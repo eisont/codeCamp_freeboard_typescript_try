@@ -13,7 +13,7 @@ import {
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
-} from "../../../../path/to/types/generated/types";
+} from "../../../../../path/to/types/generated/types";
 
 const BoardList = () => {
   const router = useRouter();

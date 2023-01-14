@@ -1,10 +1,10 @@
 // 게시판 목록 presenter
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
-import { getDateComma } from "../../../commons/libraries/utiles";
-import { LikeIconsvg, Profilesvg } from "../../../commons/styles/Iconsvg";
-import { CodeCampLogosvg } from "../../../commons/styles/Imgsvg";
-import BestBoardCarousel from "../../commons/carousel";
+import { getDateComma } from "../../../../commons/libraries/utiles";
+import { LikeIconsvg, Profilesvg } from "../../../../commons/styles/Iconsvg";
+import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
+import BestBoardCarousel from "../../../commons/carousel";
 import * as S from "./BoardList.style";
 import { IPropsBestBoards } from "./BoardList.types";
 

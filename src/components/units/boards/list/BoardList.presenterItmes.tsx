@@ -1,7 +1,7 @@
 // 게시판 목록 presenter
 
 import * as S from "./BoardList.style";
-import { getDateComma } from "../../../commons/libraries/utiles";
+import { getDateComma } from "../../../../commons/libraries/utiles";
 import { IPropsPreItem } from "./BoardList.types";
 import { v4 as uuidv4 } from "uuid";
 import { MouseEvent } from "react";
@@ -22,7 +22,7 @@ const BoardListItem = (pr: IPropsPreItem) => {
         {pr.el.title
           ?.replaceAll(String(pr.keyword), `^#$%${pr.keyword}^#$%`)
           .split("#$%")
-          .map((el) => (
+          .map((el: any) => (
             <S.Word key={uuidv4()} isMatched={pr.keyword === el}>
               {el}
             </S.Word>

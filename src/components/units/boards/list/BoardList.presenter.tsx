@@ -3,9 +3,9 @@
 import * as S from "./BoardList.style";
 import BoardListBestBoards from "./BoardList.presenterBestBoards";
 import { v4 as uuidv4 } from "uuid";
-import { PencilFillsvg } from "../../../commons/styles/Iconsvg";
-import Paginations01 from "../../commons/paginations/01/Pagubatuibs01.container";
-import Searchbars02 from "../../commons/searchboars/02/Searchbar02.container";
+import { PencilFillsvg } from "../../../../commons/styles/Iconsvg";
+import Paginations01 from "../../../commons/paginations/01/Pagubatuibs01.container";
+import Searchbars02 from "../../../commons/searchboars/02/Searchbar02.container";
 import { IPropsPre } from "./BoardList.types";
 import BoardListItem from "./BoardList.presenterItmes";
 
@@ -14,7 +14,7 @@ const BoardListUI = (pr: IPropsPre) => {
     <S.Wrapper>
       <S.BestText>베스트 게시글</S.BestText>
       <S.BestBoards>
-        {pr.BoardsOfTheBestDate?.fetchBoardsOfTheBest.map((el) => (
+        {pr.BoardsOfTheBestDate?.fetchBoardsOfTheBest.map((el: any) => (
           <BoardListBestBoards key={uuidv4()} el={el} />
         ))}
       </S.BestBoards>
@@ -39,7 +39,7 @@ const BoardListUI = (pr: IPropsPre) => {
             <S.HText>날짜</S.HText>
           </S.Grid>
 
-          {pr.BoardsDate?.fetchBoards.map((el, index) => (
+          {pr.BoardsDate?.fetchBoards.map((el: any, index: number) => (
             <BoardListItem
               key={uuidv4()}
               el={el}
