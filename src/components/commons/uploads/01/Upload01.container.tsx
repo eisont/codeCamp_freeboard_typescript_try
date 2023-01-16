@@ -2,9 +2,10 @@ import { useMutation } from "@apollo/client";
 import { useRef } from "react";
 import Uploads01UI from "./Upload01.presenter";
 import { UPLOAD_FILE } from "./Upload01.query";
+import { IPopsCon } from "./Upload01.types";
 import { checkValidationImage } from "./Upload01.validation";
 
-const Uploads01 = (pr) => {
+const Uploads01 = (pr: IPopsCon) => {
   const fileRef = useRef();
   const [uploadFile] = useMutation(UPLOAD_FILE);
 

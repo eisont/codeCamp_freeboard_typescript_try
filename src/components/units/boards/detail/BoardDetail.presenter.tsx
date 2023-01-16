@@ -75,11 +75,11 @@ const BoardDetailUI = (pr: IPropsPre) => {
           )}
 
           <S.SectionVideoBox>
-            {/* {pr.fetchBoardData?.fetchBoard.youtubeUrl !== null && (
+            {pr.fetchBoardData?.fetchBoard.youtubeUrl !== null && (
               <S.SectionVideoURL
                 url={String(pr.fetchBoardData?.fetchBoard.youtubeUrl)}
               />
-            )} */}
+            )}
           </S.SectionVideoBox>
         </S.Body>
 

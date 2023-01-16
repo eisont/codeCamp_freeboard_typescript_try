@@ -9,8 +9,8 @@ import { IQuery } from "../../../../../path/to/types/generated/types";
 // ===============================================================
 
 export interface IPropsCon {
-  isEdit: Boolean;
-  fetchBoardData: Pick<IQuery, "fetchBoard"> | undefined;
+  isEdit?: Boolean;
+  fetchBoardData?: Pick<IQuery, "fetchBoard"> | undefined;
 }
 export interface IAddressData {
   address: string;

@@ -1,6 +1,7 @@
 import * as S from "./Upload01.style";
+import { IPropsPr } from "./Upload01.types";
 
-const Uploads01UI = (pr) => {
+const Uploads01UI = (pr: IPropsPr) => {
   return (
     <>
       {pr.fileUrl ? (
