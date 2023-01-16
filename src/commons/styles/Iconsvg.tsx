@@ -70,7 +70,7 @@ export const ProfileArrow = (pr: IProps) => {
     <div
       style={{
         margin: `${pr.margin}`,
-        transform: `${pr.rotate}`,
+        transform: `${pr.transform}`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

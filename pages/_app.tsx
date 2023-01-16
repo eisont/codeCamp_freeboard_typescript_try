@@ -4,6 +4,7 @@ import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Layout from "../src/components/commons/layout";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const client = new ApolloClient({
@@ -13,8 +14,10 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Component {...pageProps} />;
+      <Layout>
+        <Global styles={globalStyles} />
+        <Component {...pageProps} />;
+      </Layout>
     </ApolloProvider>
   );
 };

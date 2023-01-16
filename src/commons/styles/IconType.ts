@@ -3,7 +3,7 @@ export interface IProps {
   width?: string;
   height?: string;
   fill?: string;
-  rotate?: string;
+  transform?: string;
   CilcleFill?: string;
   SettingFill?: string;
   pigfill?: string;
