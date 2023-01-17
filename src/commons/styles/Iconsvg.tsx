@@ -563,7 +563,7 @@ export const LikeIconsvg = (pr: IProps) => {
   return (
     <div
       style={{
-        transform: `${pr.rotate}`,
+        transform: `${pr.transform}`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

@@ -3,6 +3,7 @@ import { Tooltip } from "antd";
 import {
   Addresssvg,
   LikeIconsvg,
+  LinkIconsvg,
   Profilesvg,
 } from "../../../../commons/styles/Iconsvg";
 import * as S from "./BoardDetail.style";
@@ -38,8 +39,9 @@ const BoardDetailUI = (pr: IPropsPre) => {
               </S.CreatedAt>
             </div>
           </S.UserInformation>
+
           <S.HeaderButtons>
-            <LikeIconsvg
+            <LinkIconsvg
               margin="29.33px"
               width="28"
               height="14"
@@ -52,17 +54,20 @@ const BoardDetailUI = (pr: IPropsPre) => {
                   ? `${pr.fetchBoardData?.fetchBoard.boardAddress?.address} ${pr.fetchBoardData?.fetchBoard.boardAddress?.addressDetail}`
                   : "등록한 주소가 없습니다."
               }
-            />
-            <div>
-              <Addresssvg width="32" height="32" fill="#ffd600" />
-            </div>
+            >
+              <div>
+                <Addresssvg width="32" height="32" fill="#ffd600" />
+              </div>
+            </Tooltip>
           </S.HeaderButtons>
         </S.Header>
 
         <S.Body>
           <S.SectionText>{pr.fetchBoardData?.fetchBoard?.title}</S.SectionText>
 
-          <BoardDetailCarousel images={pr.ImageCheck} />
+          {pr.ImageCheck?.length !== 0 && (
+            <BoardDetailCarousel images={pr.ImageCheck} />
+          )}
 
           {typeof window !== "undefined" && (
             <S.SectionContent
@@ -95,7 +100,7 @@ const BoardDetailUI = (pr: IPropsPre) => {
               width="22"
               height="20"
               fill="#ffd600"
-              rotate="rotate(180deg)"
+              transform="rotate(180deg)"
             />
             <S.DisLikeNumber>
               {pr.fetchBoardData?.fetchBoard.dislikeCount}

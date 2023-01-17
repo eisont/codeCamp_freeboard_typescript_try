@@ -19,7 +19,6 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../../path/to/types/generated/types";
-// import { withAuth } from "../../../commons/hocs/withAuth";
 
 const BoardDetail = () => {
   const router = useRouter();
