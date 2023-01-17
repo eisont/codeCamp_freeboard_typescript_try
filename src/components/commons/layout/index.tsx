@@ -18,16 +18,19 @@ interface ILayoutProps {
 const Layout = (props: ILayoutProps) => {
   const router = useRouter();
 
+  const MainPage = ["/"];
+  const isMainPage = MainPage.includes(router.asPath);
+
   const BoardListPage = ["/boards"];
   const isBoardListPage = BoardListPage.includes(router.asPath);
 
   return (
     <Wrapper>
-      <LayoutHeader />
-      <LayoutNavigation />
+      {!isMainPage && <LayoutHeader />}
+      {!isMainPage && <LayoutNavigation />}
       {isBoardListPage && <LayoutBanner />}
       <div>{props.children}</div>
-      <LayoutFooter />
+      {!isMainPage && <LayoutFooter />}
     </Wrapper>
   );
 };

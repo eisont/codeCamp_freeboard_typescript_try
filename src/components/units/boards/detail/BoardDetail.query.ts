@@ -13,6 +13,7 @@ export const FETCH_USER_LOGGED_IN = gql`
     }
   }
 `;
+
 // 등록한 데이터 조회
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {

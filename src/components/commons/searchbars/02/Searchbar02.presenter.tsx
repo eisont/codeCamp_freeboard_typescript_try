@@ -8,19 +8,19 @@ const Searchbars02UI = (props: ISearchbars02UIProps) => {
         <S.SearchIcon />
         <S.SearchbarInput
           placeholder="제목을 검색해주세요."
-          {...props.register("mysearch")}
+          {...props.register("search")}
         />
       </S.Searchbar>
 
       <S.SearchDate
         type="date"
         placeholder="YY.MM.DD"
-        onChange={props.onChangeStartDate}
+        {...props.register("startDate")}
       />
       <S.SearchDate
         type="date"
         placeholder="YY.MM.DD"
-        onChange={props.onChangeEndDate}
+        {...props.register("endDate")}
       />
       <S.SearchBt>검색하기</S.SearchBt>
     </S.Wrapper>

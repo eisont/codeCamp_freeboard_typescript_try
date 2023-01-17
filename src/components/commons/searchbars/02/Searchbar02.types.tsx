@@ -8,12 +8,16 @@ import {
 import {
   IQuery,
   IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
 } from "../../../../../path/to/types/generated/types";
 
 export interface IPropsCon {
   refetchBoards: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
+  refetchBoardsCount: (
+    variables?: Partial<IQueryFetchBoardsCountArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
   setKeyword: Dispatch<SetStateAction<string>>;
 
   startDate: String;
@@ -31,5 +35,7 @@ export interface ISearchbars02UIProps {
 }
 
 export interface SearchType {
-  mysearch: String;
+  search: String;
+  startDate?: String;
+  endDate?: String;
 }

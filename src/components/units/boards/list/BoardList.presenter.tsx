@@ -23,6 +23,7 @@ const BoardListUI = (pr: IPropsPre) => {
         <S.SearchBox>
           <Searchbars02
             refetchBoards={pr.refetchBoards}
+            refetchBoardsCount={pr.refetchBoardsCount}
             setKeyword={pr.setKeyword}
             startDate={pr.startDate}
             setStartDate={pr.setStartDate}

@@ -20,7 +20,7 @@ const BoardList = () => {
 
   const [keyword, setKeyword] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState(``);
 
   const { data: BoardsOfTheBestDate } = useQuery<
     IQuery,

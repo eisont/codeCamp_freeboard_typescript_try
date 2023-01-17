@@ -17,6 +17,7 @@ export interface IAddressData {
   zonecode: string;
 }
 export interface IData {
+  writer?: string;
   password?: string;
   title?: string;
   contents?: string;
@@ -32,7 +33,7 @@ export interface fileType {
 export interface IPropsPre {
   isActive: Boolean;
   isOpen: Boolean;
-  isEdit: Boolean;
+  isEdit?: Boolean;
   address: string;
   zonecode: string;
   fetchBoardData: Pick<IQuery, "fetchBoard"> | undefined;
@@ -42,7 +43,6 @@ export interface IPropsPre {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onChangeFileUrls: (fileUrl: fileType, index: number) => void;
   onClickSubmit: (data: IData) => Promise<void>;
-  onClickUpdate: (data: IData) => Promise<void>;
   onClickBack: () => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: IAddressData) => void;

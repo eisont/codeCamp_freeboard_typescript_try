@@ -7,58 +7,69 @@ import { IPropsPre } from "./BoardWrite.types";
 
 const BoardWriteUI = (pr: IPropsPre) => {
   return (
-    <S.Wrapper
-      onSubmit={
-        pr.isEdit
-          ? pr.handleSubmit(pr.onClickUpdate)
-          : pr.handleSubmit(pr.onClickSubmit)
-      }
-    >
+    <S.Wrapper onSubmit={pr.handleSubmit(pr.onClickSubmit)}>
       <S.Title>{pr.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
 
-      <S.WriterWrapper>
+      <S.PasswordWrapper>
+        <S.InputWrapper>
+          <S.Label>작성자</S.Label>
+          <S.PasswordInput
+            type="text"
+            placeholder="(필수) 작성자를 작성해주세요."
+            {...pr.register("writer")}
+          />
+          <S.Error>
+            {pr.formState?.errors?.writer?.message &&
+              String(pr.formState?.errors?.writer?.message)}
+          </S.Error>
+        </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>비밀번호</S.Label>
-          <S.Password
+          <S.PasswordInput
             type="password"
             placeholder="(필수) 비밀번호를 작성해주세요."
             {...pr.register("password")}
           />
-          <S.Error>{String(pr.formState?.errors?.password?.message)}</S.Error>
+          <S.Error>
+            {pr.formState?.errors?.password?.message &&
+              String(pr.formState?.errors?.password?.message)}
+          </S.Error>
         </S.InputWrapper>
-      </S.WriterWrapper>
+      </S.PasswordWrapper>
 
       <S.InputWrapper>
         <S.Label>제목</S.Label>
-        <S.Subject
+        <S.SubjectInput
           type="text"
           placeholder="(필수) 제목을 작성해주세요."
           defaultValue={pr.fetchBoardData?.fetchBoard?.title}
           {...pr.register("title")}
         />
-        <S.Error>{String(pr.formState?.errors?.title?.message)}</S.Error>
+        <S.Error>
+          {pr.formState?.errors?.title?.message &&
+            String(pr.formState?.errors?.title?.message)}
+        </S.Error>
       </S.InputWrapper>
 
       <S.InputWrapper>
         <S.Label>내용</S.Label>
-        <S.Contents
+        <S.ContentsTextArea
           placeholder="(필수) 내용을 작성해주세요."
           defaultValue={pr.fetchBoardData?.fetchBoard?.contents}
           {...pr.register("contents")}
         />
-        <S.Error>{String(pr.formState?.errors?.contents?.message)}</S.Error>
+        <S.Error>
+          {pr.formState?.errors?.contents?.message &&
+            String(pr.formState?.errors?.contents?.message)}
+        </S.Error>
       </S.InputWrapper>
 
       <S.InputWrapper>
         <S.Label>주소</S.Label>
         <S.ZonecodeWrapper>
-          <S.Zonecode
+          <S.ZonecodeInput
             readOnly
             // value랑 defaultValue를 같이 작성합니다.
-            defaultValue={
-              pr.zonecode ||
-              String(pr.fetchBoardData?.fetchBoard.boardAddress?.zipcode)
-            }
             value={
               pr.zonecode ||
               pr.fetchBoardData?.fetchBoard.boardAddress?.zipcode ||
@@ -70,47 +81,51 @@ const BoardWriteUI = (pr: IPropsPre) => {
           </S.SearchButton>
           {pr.isOpen && (
             <Modal
-              visible={Boolean(pr.isOpen)}
+              open={Boolean(pr.isOpen)}
               onOk={pr.onClickAddressSearch}
               onCancel={pr.onClickAddressSearch}
-              width={800}
+              width={1000}
             >
               <DaumPostcode onComplete={pr.onCompleteAddressSearch} />
             </Modal>
           )}
         </S.ZonecodeWrapper>
-        <S.Addressbasic
+        <S.AddressInput
           readOnly
-          defaultValue={
-            pr.address ||
-            String(pr.fetchBoardData?.fetchBoard.boardAddress?.address)
-          }
           value={
             pr.address ||
-            String(pr.fetchBoardData?.fetchBoard.boardAddress?.address) ||
+            pr.fetchBoardData?.fetchBoard.boardAddress?.address ||
             "(선택) 주소를 선택해주세요."
           }
         />
-        <S.AddressDetail
+        <S.AddressDetailInput
           placeholder="(선택) 상세 주소를 입력해주세요."
-          {...pr.register("addressDetail")}
           defaultValue={
             pr.fetchBoardData?.fetchBoard.boardAddress?.addressDetail || ""
           }
+          {...pr.register("addressDetail")}
         />
         <S.Error>
-          {String(pr.formState?.errors?.addressDetail?.message)}
+          {pr.formState?.errors?.addressDetail?.message &&
+            String(pr.formState?.errors?.addressDetail?.message)}
         </S.Error>
       </S.InputWrapper>
 
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
-        <S.Youtube
+        <S.YoutubeInput
           placeholder="(선택) 링크를 복사해주세요."
+          defaultValue={
+            pr.fetchBoardData?.fetchBoard?.youtubeUrl
+              ? String(pr.fetchBoardData?.fetchBoard?.youtubeUrl)
+              : ""
+          }
           {...pr.register("youtubeUrl")}
-          defaultValue={String(pr.fetchBoardData?.fetchBoard?.youtubeUrl)}
         />
-        <S.Error>{String(pr.formState?.errors?.youtubeUrl?.message)}</S.Error>
+        <S.Error>
+          {pr.formState?.errors?.youtubeUrl?.message &&
+            String(pr.formState?.errors?.youtubeUrl?.message)}
+        </S.Error>
       </S.InputWrapper>
 
       <S.ImageWrapper>
