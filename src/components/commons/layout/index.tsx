@@ -22,13 +22,15 @@ const Layout = (props: ILayoutProps) => {
   const isMainPage = MainPage.includes(router.asPath);
 
   const BoardListPage = ["/boards"];
+  const MarketsListPage = ["/markets"];
   const isBoardListPage = BoardListPage.includes(router.asPath);
+  const isMarketsListPage = MarketsListPage.includes(router.asPath);
 
   return (
     <Wrapper>
       {!isMainPage && <LayoutHeader />}
       {!isMainPage && <LayoutNavigation />}
-      {isBoardListPage && <LayoutBanner />}
+      {(isBoardListPage || isMarketsListPage) && <LayoutBanner />}
       <div>{props.children}</div>
       {!isMainPage && <LayoutFooter />}
     </Wrapper>

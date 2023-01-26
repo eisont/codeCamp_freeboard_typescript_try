@@ -7,9 +7,8 @@ const Slick = styled(Slider)`
   width: 282px;
   height: 120px;
 
-  .slick-prev:before,
-  .slick-next:before {
-    color: rgba(0, 0, 0, 0.2);
+  .slick-prev,
+  .slick-next {
     display: none;
   }
 `;

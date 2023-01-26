@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { IPropsStyle } from './BoardList.types';
+import styled from "@emotion/styled";
+import { IPropsStyle } from "./BoardList.types";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -30,7 +30,7 @@ export const BestBoards = styled.div`
 export const BestBoardsBox = styled.div`
   position: relative;
   width: 282px;
-  height: 257px;
+  height: 300px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 
@@ -46,15 +46,22 @@ export const BestBoardsBox = styled.div`
   }
 `;
 
-export const BestNoImgBox = styled.div`
+export const BestImgBox = styled.div`
   width: 282px;
-  height: 120px;
+  min-height: 163px;
 
   background: #dbdbdb;
   border-radius: 20px 20px 0 0;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const BestBoardImg = styled.img`
+  width: 282px;
+  height: 163px;
+  object-fit: contain;
 `;
 
 export const ContentsBox = styled.div`
@@ -65,6 +72,11 @@ export const BestBoardsTitle = styled.div`
   font-size: 18px;
   font-weight: 500;
   color: #000;
+
+  width: 252px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 export const UserBox = styled.div`
   padding: 0 0 8px 0;
@@ -103,7 +115,7 @@ export const SectionBox = styled.div`
   width: 1200px;
 `;
 export const Word = styled.span`
-  color: ${(props: IPropsStyle) => (props.isMatched ? 'red' : '#000')};
+  color: ${(props: IPropsStyle) => (props.isMatched ? "#ffd600" : "#000")};
 `;
 
 export const SearchBox = styled.div`

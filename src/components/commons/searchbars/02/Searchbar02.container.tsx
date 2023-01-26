@@ -4,17 +4,17 @@ import { ChangeEvent } from "react";
 import { IPropsCon, SearchType } from "./Searchbar02.types";
 import { getDate } from "../../../../commons/libraries/utiles";
 
-const Searchbar02 = (props: IPropsCon) => {
+const Searchbar02 = (pr: IPropsCon) => {
   const { register, handleSubmit } = useForm();
 
   const onClickSearch = (data: SearchType) => {
-    props.setKeyword(String(data?.search));
-    props.refetchBoards({
+    pr.setKeyword(String(data?.search));
+    pr.refetch({
       startDate: data?.startDate === "" ? "1900-01-01" : data?.startDate,
       endDate: data?.endDate === "" ? getDate(`${new Date()}`) : data?.endDate,
       search: String(data?.search),
     });
-    props.refetchBoardsCount({
+    pr.refetchCount({
       startDate: data?.startDate === "" ? "1900-01-01" : data?.startDate,
       endDate: data?.endDate === "" ? getDate(`${new Date()}`) : data?.endDate,
       search: String(data?.search),
@@ -22,10 +22,10 @@ const Searchbar02 = (props: IPropsCon) => {
   };
 
   const onChangeStartDate = (event: ChangeEvent<HTMLInputElement>) => {
-    props.setStartDate(event.target.value);
+    pr.setStartDate(event.target.value);
   };
   const onChangeEndDate = (event: ChangeEvent<HTMLInputElement>) => {
-    props.setEndDate(event.target.value);
+    pr.setEndDate(event.target.value);
   };
 
   return (

@@ -12,10 +12,10 @@ import {
 } from "../../../../../path/to/types/generated/types";
 
 export interface IPropsCon {
-  refetchBoards: (
+  refetch: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
-  refetchBoardsCount: (
+  refetchCount: (
     variables?: Partial<IQueryFetchBoardsCountArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
   setKeyword: Dispatch<SetStateAction<string>>;

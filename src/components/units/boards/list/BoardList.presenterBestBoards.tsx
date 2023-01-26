@@ -4,11 +4,10 @@ import { MouseEvent } from "react";
 import { getDateComma } from "../../../../commons/libraries/utiles";
 import { LikeIconsvg, Profilesvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
-import BestBoardCarousel from "../../../commons/carousel";
 import * as S from "./BoardList.style";
 import { IPropsBestBoards } from "./BoardList.types";
 
-const BoardListBestBoards = (props: IPropsBestBoards) => {
+const BoardListBestBoards = (pr: IPropsBestBoards) => {
   const router = useRouter();
 
   const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
@@ -16,18 +15,22 @@ const BoardListBestBoards = (props: IPropsBestBoards) => {
       router.push(`/boards/${event.currentTarget.id}`);
   };
 
+  const ImageResult = pr.el?.images?.filter((img) => img)[0];
+
   return (
-    <S.BestBoardsBox id={props.el._id} onClick={onClickMoveToBoardDetail}>
-      {props.el?.images?.length === 0 ? (
-        <S.BestNoImgBox>
+    <S.BestBoardsBox id={pr.el._id} onClick={onClickMoveToBoardDetail}>
+      <S.BestImgBox>
+        {!ImageResult ? (
           <CodeCampLogosvg width="238" height="36" fill="#000" />
-        </S.BestNoImgBox>
-      ) : (
-        <BestBoardCarousel images={props.el.images} />
-      )}
+        ) : (
+          <S.BestBoardImg
+            src={`https://storage.googleapis.com/${ImageResult}`}
+          />
+        )}
+      </S.BestImgBox>
 
       <S.ContentsBox>
-        <S.BestBoardsTitle> {props.el?.title}</S.BestBoardsTitle>
+        <S.BestBoardsTitle>{pr.el?.title}</S.BestBoardsTitle>
         <S.UserBox>
           <Profilesvg
             margin="0 6px 0 0"
@@ -35,17 +38,17 @@ const BoardListBestBoards = (props: IPropsBestBoards) => {
             height="20"
             fill="#dbdbdb"
           />
-          <S.BestBoardsName>{props.el.writer}</S.BestBoardsName>
+          <S.BestBoardsName>{pr.el.writer}</S.BestBoardsName>
         </S.UserBox>
         <S.BestBoardsDate>
-          Date: {getDateComma(props.el?.createdAt)}
+          Date: {getDateComma(pr.el?.createdAt)}
         </S.BestBoardsDate>
       </S.ContentsBox>
 
       <S.BestBoardsLikeBox>
         <LikeIconsvg width="20" height="18" fill="#ffd600" />
 
-        <S.BestBoardsLikeCount>{props.el.likeCount}</S.BestBoardsLikeCount>
+        <S.BestBoardsLikeCount>{pr.el.likeCount}</S.BestBoardsLikeCount>
       </S.BestBoardsLikeBox>
     </S.BestBoardsBox>
   );
