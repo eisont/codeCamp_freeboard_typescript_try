@@ -31,7 +31,7 @@ const Uploads01 = (pr: IPopsCon) => {
       fileUrl={pr.fileUrl}
       defaultFileUrl={pr.defaultFileUrl}
       onClickUpload={onClickUpload}
-      onChageFile={onChangeFile}
+      onChangeFile={onChangeFile}
     />
   );
 };

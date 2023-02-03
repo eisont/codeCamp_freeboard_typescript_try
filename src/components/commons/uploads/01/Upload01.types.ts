@@ -4,7 +4,7 @@ import { fileType } from "../../../units/boards/write/BoardWrite.types";
 export interface IPopsCon {
   index: number;
   fileUrl: string;
-  onChangeFileUrls?: (fileUrl: fileType, index: number) => void;
+  onChangeFileUrls: (fileUrl: fileType, index: number) => void;
   defaultFileUrl?: any;
 }
 
@@ -13,7 +13,7 @@ export interface IPopsCon {
 export interface IPropsPr {
   fileRef: MutableRefObject<undefined>;
   fileUrl: string;
-  defaultFileUrl?: any;
+  defaultFileUrl: any;
   onClickUpload: () => void;
-  onChageFile: (event: any) => Promise<void>;
+  onChangeFile: (event: any) => Promise<void>;
 }

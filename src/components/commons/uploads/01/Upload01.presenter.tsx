@@ -4,17 +4,20 @@ import { IPropsPr } from "./Upload01.types";
 const Uploads01UI = (pr: IPropsPr) => {
   return (
     <>
-      {pr.fileUrl ? (
+      {pr.fileUrl && (
         <S.UploadImage
           onClick={pr.onClickUpload}
           src={`https://storage.googleapis.com/${pr.fileUrl}`}
         />
-      ) : (
-        <S.UploadButton onClick={pr.onclickUpload} type="button">
+      )}
+
+      {!pr.fileUrl && (
+        <S.UploadButton onClick={pr.onClickUpload} type="button">
           <>+</>
           <>Upload</>
         </S.UploadButton>
       )}
+
       <S.UploadFileHidden
         type="file"
         ref={pr.fileRef}

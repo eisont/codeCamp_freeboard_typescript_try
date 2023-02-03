@@ -1,13 +1,19 @@
-import {
-  atom,
-  // selector
-} from "recoil";
-// import { getAccessToken } from "../libraries/getAccessToken";
+import { atom, selector } from "recoil";
+import { getAccessToken } from "../libraries/getAccessToken";
 
 // AccessToken
 export const AccessTokenState = atom({
   key: "AccessToken",
   default: "",
+});
+
+// 같은 함수를 여러 컴포넌트에서 공유합니다.  === 글로벌 함수
+export const restoreAccessTokenLoadable = selector({
+  key: "restoreAccessTokenLoadable",
+  get: async () => {
+    const newAccessToken = await getAccessToken();
+    return newAccessToken;
+  },
 });
 
 export const Modal = atom({
@@ -98,15 +104,6 @@ export const isLoadedState = atom({
   key: "isLoadedState",
   default: true,
 });
-
-// 같은 함수를 여러 컴포넌트에서 공유합니다.  === 글로벌 함수
-// export const restoreAccessTokenLoadable = selector({
-//   key: "restoreAccessTokenLoadable",
-//   get: async () => {
-//     const newAccessToken = await getAccessToken();
-//     return newAccessToken;
-//   },
-// });
 
 export const BasketCountState = atom({
   key: "basketCount",
