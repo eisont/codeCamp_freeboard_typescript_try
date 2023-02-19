@@ -7,26 +7,17 @@ export const AccessTokenState = atom({
   default: "",
 });
 
-// 같은 함수를 여러 컴포넌트에서 공유합니다.  === 글로벌 함수
-export const restoreAccessTokenLoadable = selector({
-  key: "restoreAccessTokenLoadable",
-  get: async () => {
-    const newAccessToken = await getAccessToken();
-    return newAccessToken;
-  },
-});
-
-export const Modal = atom({
-  key: "Modal",
-  default: false,
-});
-
 export const userInfoState = atom({
   key: "userInfo",
   default: {
     emmail: "",
     name: "",
   },
+});
+
+export const RecoilModal = atom({
+  key: "LoginModal",
+  default: false,
 });
 
 export const visitedPageState = atom({
@@ -103,6 +94,15 @@ export const CountState = atom({
 export const isLoadedState = atom({
   key: "isLoadedState",
   default: true,
+});
+
+// 같은 함수를 여러 컴포넌트에서 공유합니다.  === 글로벌 함수
+export const restoreAccessTokenLoadable = selector({
+  key: "restoreAccessTokenLoadable",
+  get: async () => {
+    const newAccessToken = await getAccessToken();
+    return newAccessToken;
+  },
 });
 
 export const BasketCountState = atom({
