@@ -1,6 +1,6 @@
 import { MouseEvent, useState } from "react";
-import Pagination01UI from "./Pagubatuibs01.presenter";
-import { IPropsCon } from "./Pagubatuibs01.types";
+import Pagination01UI from "./Pagination01.presenter";
+import { IPropsCon } from "./Pagination01.types";
 
 const Pagination01 = (pr: IPropsCon) => {
   const [startPage, setStartPage] = useState(1);

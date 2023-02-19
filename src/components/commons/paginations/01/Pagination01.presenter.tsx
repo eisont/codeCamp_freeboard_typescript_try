@@ -1,6 +1,6 @@
 import { PagenationArrowsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./Pagubatuibs01.style";
-import { IPropsPre } from "./Pagubatuibs01.types";
+import * as S from "./Pagination01.style";
+import { IPropsPre } from "./Pagination01.types";
 
 const Pagination01UI = (pr: IPropsPre) => {
   return (
