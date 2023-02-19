@@ -141,10 +141,6 @@ export const Grid = styled.div`
   grid-template-columns: 1fr 8fr repeat(2, 2fr);
   text-align: center;
   border-bottom: 1px solid #bdbdbd;
-
-  &:hover {
-    border-bottom: 2px solid #ffd600;
-  }
 `;
 
 export const HText = styled.div`

@@ -18,8 +18,8 @@ import {
 const BoardList = () => {
   const router = useRouter();
 
-  const [keyword, setKeyword] = useState("");
-  const [startDate, setStartDate] = useState("");
+  const [keyword, setKeyword] = useState(``);
+  const [startDate, setStartDate] = useState(``);
   const [endDate, setEndDate] = useState(``);
 
   const { data: BoardsOfTheBestDate } = useQuery<

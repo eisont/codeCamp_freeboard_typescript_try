@@ -1,7 +1,7 @@
 // 게시판 목록 presenter
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
-import { getDateComma } from "../../../../commons/libraries/utiles";
+import { getDateComma } from "../../../../commons/libraries/utils";
 import { LikeIconsvg, Profilesvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
 import * as S from "./BoardList.style";

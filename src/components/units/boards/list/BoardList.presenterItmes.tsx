@@ -1,7 +1,7 @@
 // 게시판 목록 presenter
 
 import * as S from "./BoardList.style";
-import { getDateComma } from "../../../../commons/libraries/utiles";
+import { getDateComma } from "../../../../commons/libraries/utils";
 import { IPropsPreItem } from "./BoardList.types";
 import { v4 as uuidv4 } from "uuid";
 import { MouseEvent } from "react";
