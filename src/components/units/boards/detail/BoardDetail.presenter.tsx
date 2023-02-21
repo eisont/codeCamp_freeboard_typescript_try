@@ -7,9 +7,9 @@ import {
   Profilesvg,
 } from "../../../../commons/styles/Iconsvg";
 import * as S from "./BoardDetail.style";
-import { getDateComma } from "../../../../commons/libraries/utiles";
-import BoardDetailCarousel from "../../../commons/carousel/boardCarousel";
+import { getDateComma } from "../../../../commons/libraries/utils";
 import { IPropsPre } from "./BoardDetail.types";
+import BoardDetailCarousel from "../../../commons/carousel/boardDetail";
 
 const BoardDetailUI = (pr: IPropsPre) => {
   return (
@@ -65,7 +65,15 @@ const BoardDetailUI = (pr: IPropsPre) => {
         <S.Body>
           <S.SectionText>{pr.fetchBoardData?.fetchBoard?.title}</S.SectionText>
 
-          {pr.ImageCheck?.length !== 0 && (
+          {pr.ImageCheck?.length === 0 ? (
+            <></>
+          ) : pr.ImageCheck?.length === 1 ? (
+            <S.ImageBox>
+              <S.Image
+                src={`https://storage.googleapis.com/${pr.ImageCheck}`}
+              />
+            </S.ImageBox>
+          ) : (
             <BoardDetailCarousel images={pr.ImageCheck} />
           )}
 
@@ -80,7 +88,7 @@ const BoardDetailUI = (pr: IPropsPre) => {
           )}
 
           <S.SectionVideoBox>
-            {pr.fetchBoardData?.fetchBoard.youtubeUrl !== null && (
+            {pr.youtubeCheck && (
               <S.SectionVideoURL
                 url={String(pr.fetchBoardData?.fetchBoard.youtubeUrl)}
               />

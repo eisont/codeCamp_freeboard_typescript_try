@@ -9,7 +9,6 @@ import {
   FETCH_BOARD,
   LIKE_BOARD,
   DISLIKE_BOARD,
-  FETCH_USER_LOGGED_IN,
 } from "./BoardDetail.query";
 import {
   IMutation,
@@ -19,36 +18,27 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../../path/to/types/generated/types";
+import withAuth from "../../../commons/hocs/withAuth";
 
 const BoardDetail = () => {
   const router = useRouter();
-
   const { data: fetchBoardData } = useQuery<
     Pick<IQuery, "fetchBoard">,
     IQueryFetchBoardArgs
   >(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) },
   });
+
   const ImageCheck = fetchBoardData?.fetchBoard?.images?.filter((el) => el);
 
-  const { data: loggedUser } = useQuery<IQuery, "fetchUserLoggedIn">(
-    FETCH_USER_LOGGED_IN
-  );
-
-  const [deleteBoard] = useMutation<
-    Pick<IMutation, "deleteBoard">,
-    IMutationDeleteBoardArgs
-  >(DELETE_BOARD);
+  const youtubeCheck =
+    fetchBoardData?.fetchBoard?.youtubeUrl?.split(".").includes("youtube") ||
+    fetchBoardData?.fetchBoard?.youtubeUrl?.split("/").includes("youtu.be");
 
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,
     IMutationLikeBoardArgs
   >(LIKE_BOARD);
-
-  const [dislikeBoard] = useMutation<
-    Pick<IMutation, "dislikeBoard">,
-    IMutationDislikeBoardArgs
-  >(DISLIKE_BOARD);
 
   const onClickLikeCount = () => {
     likeBoard({
@@ -65,6 +55,11 @@ const BoardDetail = () => {
       ],
     });
   };
+
+  const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
 
   const onClickDisLikeCount = () => {
     dislikeBoard({
@@ -85,9 +80,16 @@ const BoardDetail = () => {
   const onClickMoveToBoardList = () => {
     router.push("/boards");
   };
+
   const onClickMoveToBoardEdit = () => {
     router.push(`/boards/${router.query.boardId}/edit`);
   };
+
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
+
   const onClickDelete = async () => {
     try {
       await deleteBoard({
@@ -102,9 +104,9 @@ const BoardDetail = () => {
 
   return (
     <BoardDetailUI
-      loggedUser={loggedUser}
       fetchBoardData={fetchBoardData}
       ImageCheck={ImageCheck}
+      youtubeCheck={youtubeCheck}
       onClickLikeCount={onClickLikeCount}
       onClickDisLikeCount={onClickDisLikeCount}
       onClickMoveToBoardList={onClickMoveToBoardList}
@@ -114,4 +116,4 @@ const BoardDetail = () => {
   );
 };
 
-export default BoardDetail;
+export default withAuth(BoardDetail);

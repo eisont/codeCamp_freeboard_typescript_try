@@ -61,12 +61,28 @@ export const SectionText = styled.div`
   font-size: 36px;
 `;
 
-export const SectionContent = styled.p`
+export const ImageBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Image = styled.img`
+  width: 296px;
+  height: 296px;
+  object-fit: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SectionContent = styled.div`
   width: 996px;
-  height: 100px;
 
   overflow: hidden;
-  white-space: normal;
+  white-space: pre-wrap;
 
   font-size: 16px;
   font-weight: 400;
@@ -101,7 +117,7 @@ export const LikeButton = styled.div`
     cursor: pointer;
   }
 `;
-export const LikeNumber = styled.p`
+export const LikeNumber = styled.div`
   color: #ffd600;
   font-size: 25px;
   font-weight: 900;
@@ -117,7 +133,7 @@ export const DisLikeButton = styled.div`
     cursor: pointer;
   }
 `;
-export const DisLikeNumber = styled.p`
+export const DisLikeNumber = styled.div`
   color: #828282;
   font-size: 25px;
   font-weight: 900;
