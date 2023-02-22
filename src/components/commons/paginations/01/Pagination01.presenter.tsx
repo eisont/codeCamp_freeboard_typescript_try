@@ -14,8 +14,7 @@ const Pagination01UI = (pr: IPropsPre) => {
           pr.startPage + index <= pr.lastPage && (
             <S.Page
               key={pr.startPage + index}
-              onClick={pr.onClickPage}
-              id={String(pr.startPage + index)}
+              onClick={pr.onClickPage(String(pr.startPage + index))}
               isActive={pr.startPage + index === pr.activedPage}
             >
               {pr.startPage + index}
