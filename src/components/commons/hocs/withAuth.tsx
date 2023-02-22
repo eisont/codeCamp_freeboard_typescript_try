@@ -7,7 +7,6 @@ import {
 } from "../../../commons/store";
 
 // {}, return 이 있지만 한 줄이라 생략
-// @ts-ignore
 const withAuth = (Component) => (props) => {
   const [accessToken] = useRecoilState(AccessTokenState);
   const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable);
