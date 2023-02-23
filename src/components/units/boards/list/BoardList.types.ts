@@ -25,6 +25,7 @@ export interface IPropsPre {
   refetchBoardsCount: (
     variables?: Partial<IQueryFetchBoardsCountArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
+  onClickMoveToBoardDetail: (id: string) => (_: any) => void;
   onClickMoveToBoardNew: () => void;
 }
 // ================================================================
@@ -36,6 +37,7 @@ export interface IPropsStyle {
 
 export interface IPropsBestBoards {
   el: IBoard;
+  onClickMoveToBoardDetail: (id: string) => (_: any) => void;
 }
 // ================================================================
 
@@ -43,4 +45,5 @@ export interface IPropsPreItem {
   el: IBoard;
   index: number;
   keyword?: String | undefined | RegExp;
+  onClickMoveToBoardDetail: (id: string) => (_: any) => void;
 }

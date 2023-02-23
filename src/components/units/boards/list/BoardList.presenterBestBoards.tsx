@@ -1,24 +1,19 @@
 // 게시판 목록 presenter
-import { useRouter } from "next/router";
-import { MouseEvent } from "react";
 import { getDateComma } from "../../../../commons/libraries/utils";
-import { LikeIconsvg, Profilesvg } from "../../../../commons/styles/Iconsvg";
+import { LikeIconsvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
+import UserInfoPicure from "../../../commons/Info/userInfoPicture";
 import * as S from "./BoardList.style";
 import { IPropsBestBoards } from "./BoardList.types";
 
 const BoardListBestBoards = (pr: IPropsBestBoards) => {
-  const router = useRouter();
-
-  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target instanceof Element)
-      router.push(`/boards/${event.currentTarget.id}`);
-  };
-
   const ImageResult = pr.el?.images?.filter((img) => img)[0];
 
   return (
-    <S.BestBoardsBox id={pr.el._id} onClick={onClickMoveToBoardDetail}>
+    <S.BestBoardsBox
+      id={pr.el._id}
+      onClick={pr.onClickMoveToBoardDetail(pr.el._id)}
+    >
       <S.BestImgBox>
         {!ImageResult ? (
           <CodeCampLogosvg width="238" height="36" fill="#000" />
@@ -32,12 +27,7 @@ const BoardListBestBoards = (pr: IPropsBestBoards) => {
       <S.ContentsBox>
         <S.BestBoardsTitle>{pr.el?.title}</S.BestBoardsTitle>
         <S.UserBox>
-          <Profilesvg
-            margin="0 6px 0 0"
-            width="20"
-            height="20"
-            fill="#dbdbdb"
-          />
+          <UserInfoPicure size="20" data={String(pr.el?.user)} />
           <S.BestBoardsName>{pr.el.writer}</S.BestBoardsName>
         </S.UserBox>
         <S.BestBoardsDate>

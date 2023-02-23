@@ -45,6 +45,10 @@ const BoardList = () => {
     },
   });
 
+  const onClickMoveToBoardDetail = (id: string) => (_: any) => {
+    router.push(`/boards/${id}`);
+  };
+
   const onClickMoveToBoardNew = () => {
     router.push(`/boards/new`);
   };
@@ -62,6 +66,7 @@ const BoardList = () => {
       BoardsCountDate={BoardsCountDate}
       refetchBoards={refetchBoards}
       refetchBoardsCount={refetchBoardsCount}
+      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
     />
   );

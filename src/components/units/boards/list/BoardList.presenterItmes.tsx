@@ -4,21 +4,12 @@ import * as S from "./BoardList.style";
 import { getDateComma } from "../../../../commons/libraries/utils";
 import { IPropsPreItem } from "./BoardList.types";
 import { v4 as uuidv4 } from "uuid";
-import { MouseEvent } from "react";
-import { useRouter } from "next/router";
 
 const BoardListItem = (pr: IPropsPreItem) => {
-  const router = useRouter();
-
-  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target instanceof Element)
-      router.push(`/boards/${event.currentTarget.id}`);
-  };
-
   return (
     <S.Grid>
       <S.Text>{pr.index + 1}</S.Text>
-      <S.Title onClick={onClickMoveToBoardDetail} id={pr.el._id}>
+      <S.Title onClick={pr.onClickMoveToBoardDetail(pr.el._id)}>
         {pr.el.title
           ?.replaceAll(String(pr.keyword), `^#$%${pr.keyword}^#$%`)
           .split("^#$%")

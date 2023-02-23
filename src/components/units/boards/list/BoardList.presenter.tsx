@@ -2,7 +2,6 @@
 
 import * as S from "./BoardList.style";
 import BoardListBestBoards from "./BoardList.presenterBestBoards";
-import { v4 as uuidv4 } from "uuid";
 import { PencilFillsvg } from "../../../../commons/styles/Iconsvg";
 import Paginations01 from "../../../commons/paginations/01/Pagination01.container";
 import Searchbars02 from "../../../commons/searchbars/02/Searchbar02.container";
@@ -15,7 +14,11 @@ const BoardListUI = (pr: IPropsPre) => {
       <S.BestText>베스트 게시글</S.BestText>
       <S.BestBoards>
         {pr.BoardsOfTheBestDate?.fetchBoardsOfTheBest.map((el: any) => (
-          <BoardListBestBoards key={uuidv4()} el={el} />
+          <BoardListBestBoards
+            key={el._id}
+            el={el}
+            onClickMoveToBoardDetail={pr.onClickMoveToBoardDetail}
+          />
         ))}
       </S.BestBoards>
 
@@ -42,18 +45,19 @@ const BoardListUI = (pr: IPropsPre) => {
 
           {pr.BoardsDate?.fetchBoards.map((el: any, index: number) => (
             <BoardListItem
-              key={uuidv4()}
+              key={el._id}
               el={el}
               index={index}
               keyword={pr.keyword}
+              onClickMoveToBoardDetail={pr.onClickMoveToBoardDetail}
             />
           ))}
         </S.TableTop>
 
         <S.Footer>
           <Paginations01
-            BoardsCountDate={pr.BoardsCountDate}
-            refetchBoards={pr.refetchBoards}
+            data={pr.BoardsCountDate?.fetchBoardsCount}
+            refetch={pr.refetchBoards}
           />
 
           <S.Button onClick={pr.onClickMoveToBoardNew}>

@@ -84,6 +84,7 @@ export const UserBox = styled.div`
   align-items: center;
 `;
 export const BestBoardsName = styled.div`
+  margin: 0 0 0 6px;
   font-weight: 400;
   font-size: 16px;
   color: #000;
