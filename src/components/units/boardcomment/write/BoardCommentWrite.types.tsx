@@ -5,9 +5,9 @@ import {
 } from "../../../../../path/to/types/generated/types";
 
 export interface IPropsCon {
-  isEdit: boolean;
-  setIsEdit: Dispatch<SetStateAction<boolean>>;
-  el: IBoardComment;
+  isEdit?: boolean;
+  setIsEdit?: Dispatch<SetStateAction<boolean>>;
+  el?: IBoardComment;
 }
 
 export interface IPropPre {

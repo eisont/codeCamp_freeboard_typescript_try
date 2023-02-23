@@ -4,12 +4,12 @@ import {
   Addresssvg,
   LikeIconsvg,
   LinkIconsvg,
-  Profilesvg,
 } from "../../../../commons/styles/Iconsvg";
 import * as S from "./BoardDetail.style";
 import { getDateComma } from "../../../../commons/libraries/utils";
 import { IPropsPre } from "./BoardDetail.types";
 import BoardDetailCarousel from "../../../commons/carousel/boardDetail";
+import UserInfoPicure from "../../../commons/Info/userInfoPicture";
 
 const BoardDetailUI = (pr: IPropsPre) => {
   return (
@@ -17,22 +17,12 @@ const BoardDetailUI = (pr: IPropsPre) => {
       <S.Contents>
         <S.Header>
           <S.UserInformation>
-            {pr.fetchBoardData?.fetchBoard?.user?.picture !== undefined && (
-              <S.UserProfilePhoto
-                src={`https://storage.googleapie.com/${pr.fetchBoardData?.fetchBoard?.user?.picture}`}
-              />
-            )}
+            <UserInfoPicure
+              size="47"
+              data={pr.fetchBoardData?.fetchBoard?.user?.picture}
+            />
 
-            {pr.fetchBoardData?.fetchBoard?.user?.picture === undefined && (
-              <Profilesvg
-                margin="0 16.67px 0 0"
-                width="47"
-                height="47"
-                fill="#bdbdbd"
-              />
-            )}
-
-            <div>
+            <div style={{ margin: "0 0 0 16.67px" }}>
               <S.UserName>{pr.fetchBoardData?.fetchBoard?.writer}</S.UserName>
               <S.CreatedAt>
                 Date: {getDateComma(pr.fetchBoardData?.fetchBoard?.createdAt)}
