@@ -1,13 +1,14 @@
-import styled from '@emotion/styled';
-import { v4 as uuidv4 } from 'uuid';
-import Slider from 'react-slick';
+import styled from "@emotion/styled";
+import Slider from "react-slick";
+import { v4 as uuidv4 } from "uuid";
+import { IBestBoardCarousel } from "../../../../../path/to/types/components/commons/types";
 
 const Slick = styled(Slider)`
   width: 282px;
+  height: 120px;
 
-  .slick-prev:before,
-  .slick-next:before {
-    color: rgba(0, 0, 0, 0.2);
+  .slick-prev,
+  .slick-next {
     display: none;
   }
 `;
@@ -16,13 +17,9 @@ const Image = styled.img`
   width: 282px;
   height: 120px;
   object-fit: contain;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
-const BestBoardCarousel = (pr) => {
+const BestBoardCarousel = (pr: IBestBoardCarousel) => {
   const settings = {
     // 리스트 모양 보여주기
     dots: false,
@@ -39,7 +36,8 @@ const BestBoardCarousel = (pr) => {
     // cssEase: 'ease',
   };
 
-  const result = pr.data?.filter((ee) => ee);
+  const result = pr.images?.filter((ee: string) => ee);
+
   return (
     <Slick {...settings}>
       {result?.map((el) => (

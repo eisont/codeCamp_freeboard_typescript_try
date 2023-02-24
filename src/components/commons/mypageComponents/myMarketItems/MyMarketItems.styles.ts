@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IPropsStyles } from "./MyMarketItems.types";
+import { IMyMarketsItemsUIStyles } from "../../../../../path/to/types/components/commons/types";
 
 export const Section = styled.div`
   width: 980px;
@@ -23,8 +23,9 @@ export const MenuBox = styled.div`
 export const MyItems = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.myItems ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) =>
+  color: ${(props: IMyMarketsItemsUIStyles) =>
+    props.myItems ? "#000" : "#828282"};
+  border-bottom: ${(props: IMyMarketsItemsUIStyles) =>
     props.myItems && "2px solid #ffd600"};
 
   &:hover {
@@ -36,8 +37,9 @@ export const MyItems = styled.div`
 export const MyPicked = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.myPicked ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) =>
+  color: ${(props: IMyMarketsItemsUIStyles) =>
+    props.myPicked ? "#000" : "#828282"};
+  border-bottom: ${(props: IMyMarketsItemsUIStyles) =>
     props.myPicked && "2px solid #ffd600"};
 
   &:hover {
@@ -102,7 +104,7 @@ export const Row6Th = styled.div`
 
   display: grid;
   grid-template-rows: 52px;
-  grid-template-columns: 1fr 8fr repeat(4, 1.5fr);
+  grid-template-columns: 1fr 6fr repeat(4, 1.5fr);
   text-align: center;
 `;
 export const Row6 = styled.div`
@@ -113,7 +115,7 @@ export const Row6 = styled.div`
 
   display: grid;
   grid-template-rows: 52px;
-  grid-template-columns: 1fr 8fr repeat(4, 1.5fr);
+  grid-template-columns: 1fr 6fr repeat(4, 1.5fr);
   text-align: center;
 
   transition: 0.2s;
@@ -134,4 +136,6 @@ export const Td = styled.div`
   font-weight: 400;
   font-size: 16px;
   color: #4f4f4f;
+
+  white-space: nowrap;
 `;

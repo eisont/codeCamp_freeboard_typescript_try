@@ -1,7 +1,7 @@
-import * as S from "./Upload01.style";
-import { IPropsPr } from "./Upload01.types";
+import { IUploads01UI } from "../../../../../path/to/types/components/commons/types";
+import * as S from "./upload01.style";
 
-const Uploads01UI = (pr: IPropsPr) => {
+const Uploads01UI = (pr: IUploads01UI) => {
   return (
     <>
       {pr.fileUrl && (

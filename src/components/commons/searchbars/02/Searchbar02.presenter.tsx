@@ -1,7 +1,7 @@
-import * as S from "./Searchbar02.style";
-import { ISearchbars02UIProps } from "./Searchbar02.types";
+import { ISearchbars02UI } from "../../../../../path/to/types/components/commons/types";
+import * as S from "./searchbar02.style";
 
-const Searchbars02UI = (props: ISearchbars02UIProps) => {
+const Searchbars02UI = (props: ISearchbars02UI) => {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSearch)}>
       <S.Searchbar>

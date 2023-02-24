@@ -45,6 +45,7 @@ const DogImg = styled.img`
   height: 400px;
   object-fit: cover;
 `;
+
 const LayoutBanner = () => {
   const settings = {
     // 리스트 모양 보여주기

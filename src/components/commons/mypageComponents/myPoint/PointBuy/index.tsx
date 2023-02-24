@@ -1,4 +1,4 @@
-import * as S from "../MyPoint.styles";
+import * as S from "../myPoint.styles";
 import { v4 as uuidv4 } from "uuid";
 import { getDateComma } from "../../../../../commons/libraries/utils";
 import { PointComma } from "../../../../../commons/libraries/point";
@@ -9,7 +9,7 @@ import {
   IQueryFetchPointTransactionsOfBuyingArgs,
 } from "../../../../../../path/to/types/generated/types";
 import { useRouter } from "next/router";
-import Pagination01 from "../../../paginations/01/Pagination01.container";
+import Pagination01 from "../../../paginations/01/pagination01.container";
 
 const FETCH_POINT_TRANSACTIONS_OF_BUYING = gql`
   query fetchPointTransactionsOfBuying($search: String, $page: Int) {

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
+import { ILoginModal } from "../../../../../path/to/types/components/commons/types";
 import { RecoilModal } from "../../../../commons/store";
 import { Closesvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
@@ -46,10 +47,8 @@ const Bt = styled.div`
   font-size: 16px;
   cursor: pointer;
 `;
-interface IProps {
-  Title: String;
-}
-const LoginModal = (pr: IProps) => {
+
+const LoginModal = (pr: ILoginModal) => {
   const router = useRouter();
 
   const [, setModalClose] = useRecoilState(RecoilModal);

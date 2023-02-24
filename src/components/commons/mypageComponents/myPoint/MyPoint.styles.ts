@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IPropsStyles } from "./MyPoint.types";
+import { IMyPointUIStyles } from "../../../../../path/to/types/components/commons/types";
 
 export const Section = styled.div`
   width: 980px;
@@ -23,8 +23,9 @@ export const MenuBox = styled.div`
 export const Total = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.total ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) => props.total && "2px solid #ffd600"};
+  color: ${(props: IMyPointUIStyles) => (props.total ? "#000" : "#828282")};
+  border-bottom: ${(props: IMyPointUIStyles) =>
+    props.total && "2px solid #ffd600"};
 
   &:hover {
     cursor: pointer;
@@ -35,8 +36,8 @@ export const Total = styled.div`
 export const Charge = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.charge ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) =>
+  color: ${(props: IMyPointUIStyles) => (props.charge ? "#000" : "#828282")};
+  border-bottom: ${(props: IMyPointUIStyles) =>
     props.charge && "2px solid #ffd600"};
 
   &:hover {
@@ -48,8 +49,9 @@ export const Charge = styled.div`
 export const Buy = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.buy ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) => props.buy && "2px solid #ffd600"};
+  color: ${(props: IMyPointUIStyles) => (props.buy ? "#000" : "#828282")};
+  border-bottom: ${(props: IMyPointUIStyles) =>
+    props.buy && "2px solid #ffd600"};
 
   &:hover {
     cursor: pointer;
@@ -60,8 +62,9 @@ export const Buy = styled.div`
 export const Sell = styled.div`
   font-weight: 400;
   font-size: 16px;
-  color: ${(props: IPropsStyles) => (props.sell ? "#000" : "#828282")};
-  border-bottom: ${(props: IPropsStyles) => props.sell && "2px solid #ffd600"};
+  color: ${(props: IMyPointUIStyles) => (props.sell ? "#000" : "#828282")};
+  border-bottom: ${(props: IMyPointUIStyles) =>
+    props.sell && "2px solid #ffd600"};
 
   &:hover {
     cursor: pointer;
@@ -176,7 +179,7 @@ export const Td = styled.div`
 export const Status = styled.div`
   font-weight: 700;
   font-size: 16px;
-  color: ${(props: IPropsStyles) =>
+  color: ${(props: IMyPointUIStyles) =>
     props.Status === "구매"
       ? "#0031E0"
       : props.Status === "판매"
@@ -187,7 +190,7 @@ export const Status = styled.div`
 export const Amount = styled.div`
   font-weight: 700;
   font-size: 16px;
-  color: ${(props: IPropsStyles) =>
+  color: ${(props: IMyPointUIStyles) =>
     props.Amount?.split("")[0] !== "-" ? "#ffd600" : "#0031E0"};
 `;
 

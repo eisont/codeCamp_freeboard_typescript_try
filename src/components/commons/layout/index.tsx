@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
 import { useRecoilState } from "recoil";
+import { ILayout } from "../../../../path/to/types/components/commons/types";
 import { RecoilModal } from "../../../commons/store";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
@@ -14,11 +14,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-interface ILayoutProps {
-  children: ReactNode;
-}
-
-const Layout = (props: ILayoutProps) => {
+const Layout = (props: ILayout) => {
   const router = useRouter();
 
   const [modalClose] = useRecoilState(RecoilModal);

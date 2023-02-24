@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
-import MyProfileUI from "./MyProfile.presenter";
-import { RESET_USER_PASSWORD } from "./MyProfile.query";
+import { ChangeEvent, useState } from "react";
+import MyProfileUI from "./myProfile.presenter";
+import { RESET_USER_PASSWORD } from "./myProfile.queries";
 
 const MyProfile = () => {
   const [password, setPassword] = useState("");
@@ -12,10 +12,10 @@ const MyProfile = () => {
 
   const [resetUserPassword] = useMutation(RESET_USER_PASSWORD);
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const onChangePasswordCheck = (event) => {
+  const onChangePasswordCheck = (event: ChangeEvent<HTMLInputElement>) => {
     setPasswordCheck(event.target.value);
   };
 
@@ -43,7 +43,7 @@ const MyProfile = () => {
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };

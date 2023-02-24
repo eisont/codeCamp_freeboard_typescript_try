@@ -1,8 +1,8 @@
+import { IPagination01UI } from "../../../../../path/to/types/components/commons/types";
 import { PagenationArrowsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./Pagination01.style";
-import { IPropsPre } from "./Pagination01.types";
+import * as S from "./pagination01.styles";
 
-const Pagination01UI = (pr: IPropsPre) => {
+const Pagination01UI = (pr: IPagination01UI) => {
   return (
     <S.Wrapper>
       <S.Page onClick={pr.onClickPrevPage}>

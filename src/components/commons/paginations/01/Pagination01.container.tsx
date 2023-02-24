@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Pagination01UI from "./Pagination01.presenter";
-import { IPropsCon } from "./Pagination01.types";
+import { IPagination01 } from "../../../../../path/to/types/components/commons/types";
+import Pagination01UI from "./pagination01.presenter";
 
-const Pagination01 = (pr: IPropsCon) => {
+const Pagination01 = (pr: IPagination01) => {
   const [startPage, setStartPage] = useState(1);
   const [activedPage, setActivedPage] = useState(1);
   const lastPage = pr.data ? Math.ceil(Number(pr.data) / 10) : 0;

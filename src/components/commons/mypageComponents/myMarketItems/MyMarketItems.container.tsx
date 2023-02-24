@@ -6,13 +6,13 @@ import {
   IQueryFetchUseditemsIPickedArgs,
   IQueryFetchUseditemsISoldArgs,
 } from "../../../../../path/to/types/generated/types";
-import MyMarketsItemsUI from "./MyMarketItems.presenter";
+import MyMarketsItemsUI from "./myMarketItems.presenter";
 import {
   FETCH_USED_ITEMS_ISOLD,
   FETCH_USED_ITEMS_COUNT_ISOLD,
   FETCH_USED_ITEMS_IPICKED,
   FETCH_USED_ITEMS_COUNT_IPICKED,
-} from "./MyMarketItems.query";
+} from "./myMarketItems.queries";
 
 const MyMarketsItems = () => {
   const router = useRouter();

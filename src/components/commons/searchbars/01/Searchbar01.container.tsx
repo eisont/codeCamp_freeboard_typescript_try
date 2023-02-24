@@ -1,9 +1,9 @@
-import Searchbars01UI from "./Searchbar01.presenter";
+import Searchbars01UI from "./searchbar01.presenter";
 import _ from "lodash";
-import { IPropsCon } from "./Searchbar01.types";
 import { ChangeEvent } from "react";
+import { ISearchbar01 } from "../../../../../path/to/types/components/commons/types";
 
-const Searchbar01 = (pr: IPropsCon) => {
+const Searchbar01 = (pr: ISearchbar01) => {
   const getDebounce = _.debounce((data) => {
     pr.setKeyword(data);
     pr.refetch({ search: data, page: 1 });

@@ -1,7 +1,8 @@
+import { IMyProfileUI } from "../../../../../path/to/types/components/commons/types";
 import { Hidesvg, Showsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./MyProfile.styles";
+import * as S from "./myProfile.styles";
 
-const MyProfileUI = (pr) => {
+const MyProfileUI = (pr: IMyProfileUI) => {
   return (
     <S.Section>
       <S.Title>비밀번호 변경</S.Title>

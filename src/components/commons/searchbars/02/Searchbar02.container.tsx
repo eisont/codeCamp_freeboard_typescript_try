@@ -1,24 +1,25 @@
-import Searchbar02UI from "./Searchbar02.presenter";
+import Searchbar02UI from "./searchbar02.presenter";
 import { useForm } from "react-hook-form";
 import { ChangeEvent } from "react";
-import { IPropsCon, SearchType } from "./Searchbar02.types";
-import { getDate } from "../../../../commons/libraries/utiles";
+import { getDateComma } from "../../../../commons/libraries/utils";
+import {
+  ISearchbar02,
+  SearchDataType,
+} from "../../../../../path/to/types/components/commons/types";
 
-const Searchbar02 = (pr: IPropsCon) => {
+const Searchbar02 = (pr: ISearchbar02) => {
   const { register, handleSubmit } = useForm();
 
-  const onClickSearch = (data: SearchType) => {
+  const onClickSearch = (data: SearchDataType) => {
+    const searchData = {
+      startDate: !data?.startDate ? "1900.01.01" : data?.startDate,
+      endDate: !data?.endDate ? getDateComma(`${new Date()}`) : data?.endDate,
+      search: String(data?.search),
+    };
+
     pr.setKeyword(String(data?.search));
-    pr.refetch({
-      startDate: data?.startDate === "" ? "1900-01-01" : data?.startDate,
-      endDate: data?.endDate === "" ? getDate(`${new Date()}`) : data?.endDate,
-      search: String(data?.search),
-    });
-    pr.refetchCount({
-      startDate: data?.startDate === "" ? "1900-01-01" : data?.startDate,
-      endDate: data?.endDate === "" ? getDate(`${new Date()}`) : data?.endDate,
-      search: String(data?.search),
-    });
+    pr.refetch(searchData);
+    pr.refetchCount(searchData);
   };
 
   const onChangeStartDate = (event: ChangeEvent<HTMLInputElement>) => {

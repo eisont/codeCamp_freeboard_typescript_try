@@ -1,8 +1,8 @@
+import { ISearchbars01UI } from "../../../../../path/to/types/components/commons/types";
 import { SearchIconsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./Searchbar01.style";
-import { IPropsPre } from "./Searchbar01.types";
+import * as S from "./searchbar01.style";
 
-const Searchbars01UI = (pr: IPropsPre) => {
+const Searchbars01UI = (pr: ISearchbars01UI) => {
   return (
     <S.Searchbar>
       <SearchIconsvg

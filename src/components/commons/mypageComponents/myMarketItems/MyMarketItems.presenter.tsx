@@ -1,11 +1,11 @@
-import * as S from "./MyMarketItems.styles";
+import * as S from "./myMarketItems.styles";
 import DOMPurify from "dompurify";
 import { PointComma } from "../../../../commons/libraries/point";
 import { getDateComma } from "../../../../commons/libraries/utils";
-import Pagination01 from "../../paginations/01/Pagination01.container";
-import { IPropsPre } from "./MyMarketItems.types";
+import Pagination01 from "../../paginations/01/pagination01.container";
+import { IMyMarketsItemsUI } from "../../../../../path/to/types/components/commons/types";
 
-const MyMarketsItemsUI = (pr: IPropsPre) => {
+const MyMarketsItemsUI = (pr: IMyMarketsItemsUI) => {
   return (
     <S.Section>
       <S.SectionHead>

@@ -1,25 +1,33 @@
 import { useMutation } from "@apollo/client";
-import { useRef } from "react";
-import Uploads01UI from "./Upload01.presenter";
-import { UPLOAD_FILE } from "./Upload01.query";
-import { IPopsCon } from "./Upload01.types";
-import { checkValidationImage } from "./Upload01.validation";
+import { ChangeEvent, useRef } from "react";
+import { IUploads01 } from "../../../../../path/to/types/components/commons/types";
+import {
+  IMutation,
+  IMutationUploadFileArgs,
+} from "../../../../../path/to/types/generated/types";
+import Uploads01UI from "./upload01.presenter";
+import { UPLOAD_FILE } from "./upload01.queries";
+import { checkValidationImage } from "./upload01.validation";
 
-const Uploads01 = (pr: IPopsCon) => {
-  const fileRef = useRef();
-  const [uploadFile] = useMutation(UPLOAD_FILE);
+const Uploads01 = (pr: IUploads01) => {
+  const [uploadFile] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_FILE);
+
+  const fileRef = useRef<HTMLInputElement>();
 
   const onClickUpload = () => {
     fileRef.current?.click();
   };
 
-  const onChangeFile = async (event) => {
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = checkValidationImage(event.target.files?.[0]);
     if (!file) return;
 
     try {
       const result = await uploadFile({ variables: { file } });
-      pr.onChangeFileUrls(result.data.uploadFile.url, pr.index);
+      pr.onChangeFileUrls(result?.data?.uploadFile.url, pr.index);
     } catch (error: any) {
       alert(error.message);
     }

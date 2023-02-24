@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
+import { LayoutNavigationUIStyle } from "../../../../../path/to/types/components/commons/types";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -14,17 +15,11 @@ export const Wrapper = styled.div`
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
 `;
 
-interface IPropsStyle {
-  isMarkets?: boolean;
-  isBoard?: boolean;
-  isMyPage?: boolean;
-}
-
 export const PageBt = styled.div`
   font-size: 18px;
-  font-weight: ${(props: IPropsStyle) =>
+  font-weight: ${(props: LayoutNavigationUIStyle) =>
     props.isMarkets || props.isBoard || props.isMyPage ? "700" : "500"};
-  color: ${(props: IPropsStyle) =>
+  color: ${(props: LayoutNavigationUIStyle) =>
     props.isMarkets || props.isBoard || props.isMyPage ? "#514400" : "#AB9000"};
   transition: 0.2s;
 
@@ -48,16 +43,12 @@ const LayoutNavigation = () => {
 
   const isBoard = router.asPath.includes("/boards");
   const isMarkets = router.asPath.includes("/markets");
-  const isMyPage = router.asPath.includes("/mypage");
 
   const onClickBoard = () => {
     router.push("/boards");
   };
   const onClickMarket = () => {
     router.push("/markets");
-  };
-  const onClickMypage = () => {
-    router.push("/mypage");
   };
   return (
     <Wrapper>
@@ -67,10 +58,6 @@ const LayoutNavigation = () => {
       <Hr />
       <PageBt onClick={onClickMarket} isMarkets={isMarkets}>
         중고마켓
-      </PageBt>
-      <Hr />
-      <PageBt onClick={onClickMypage} isMyPage={isMyPage}>
-        My-Page
       </PageBt>
     </Wrapper>
   );

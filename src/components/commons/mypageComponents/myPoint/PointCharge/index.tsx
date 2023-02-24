@@ -1,4 +1,4 @@
-import * as S from "../MyPoint.styles";
+import * as S from "../myPoint.styles";
 import { v4 as uuidv4 } from "uuid";
 import { PointComma } from "../../../../../commons/libraries/point";
 import { gql, useQuery } from "@apollo/client";
@@ -8,7 +8,7 @@ import {
   IQuery,
   IQueryFetchPointTransactionsOfLoadingArgs,
 } from "../../../../../../path/to/types/generated/types";
-import Pagination01 from "../../../paginations/01/Pagination01.container";
+import Pagination01 from "../../../paginations/01/pagination01.container";
 
 const FETCH_POINT_TRANSACTIONS_OF_LOADING = gql`
   query fetchPointTransactionsOfLoading($search: String, $page: Int) {

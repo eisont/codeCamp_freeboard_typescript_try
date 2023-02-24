@@ -111,6 +111,11 @@ export const UserInfo = styled.div`
   align-items: center;
 
   border-radius: 16px;
+
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const User = styled.div`
   margin: 0 0 0 12px;
@@ -166,6 +171,7 @@ export const LoginBt = styled.div`
   font-weight: 700;
   color: #000;
 
+  transition: 0.2s;
   &:hover {
     cursor: pointer;
     border-bottom: 2px solid #ffd600;
@@ -183,6 +189,7 @@ export const SignupBt = styled.div`
   justify-content: center;
   align-items: center;
 
+  transition: 0.2s;
   &:hover {
     cursor: pointer;
     border-bottom: 1px solid #ffd600;

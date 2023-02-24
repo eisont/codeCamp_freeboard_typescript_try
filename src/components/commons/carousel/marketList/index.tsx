@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { v4 as uuidv4 } from "uuid";
 import Slider from "react-slick";
+import { IMarketListCarousel } from "../../../../../path/to/types/components/commons/types";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ const Image = styled.img`
   align-items: center;
 `;
 
-const MarketListCarousel = (pr) => {
+const MarketListCarousel = (pr: IMarketListCarousel) => {
   const settings = {
     // 리스트 모양 보여주기
     dots: false,

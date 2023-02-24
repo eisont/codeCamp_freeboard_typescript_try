@@ -1,10 +1,11 @@
-import * as S from './MyPoint.styles';
-import PointFullHistory from './PointFullHistory';
-import PointCharge from './PointCharge';
-import PointBuy from './PointBuy';
-import PointSell from './PointSell';
+import * as S from "./myPoint.styles";
+import PointFullHistory from "./pointFullHistory";
+import PointCharge from "./pointCharge";
+import PointBuy from "./pointBuy";
+import PointSell from "./pointSell";
+import { IMyPointUI } from "../../../../../path/to/types/components/commons/types";
 
-const MyPointUI = (pr) => {
+const MyPointUI = (pr: IMyPointUI) => {
   return (
     <S.Section>
       <S.SectionHead>

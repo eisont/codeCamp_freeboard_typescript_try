@@ -1,4 +1,6 @@
-export const checkValidationImage = (file) => {
+import { IcheckValidationImage } from "../../../../../path/to/types/components/commons/types";
+
+export const checkValidationImage = (file: IcheckValidationImage) => {
   if (!file?.size) {
     alert("파일이 없습니다.");
     return false;

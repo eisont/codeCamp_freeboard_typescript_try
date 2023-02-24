@@ -1,17 +1,17 @@
 // Header Presenter
 
-import * as S from "./header.style";
+import * as S from "./header.styles";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
 import {
-  ImageChange,
   Logoutsvg,
   PointPigsvg,
   ProfileArrow,
-  Profilesvg,
 } from "../../../../commons/styles/Iconsvg";
 import { PointComma } from "../../../../commons/libraries/point";
+import UserInfoPicure from "../../Info/userInfoPicture";
+import { ILayoutHeaderUI } from "../../../../../path/to/types/components/commons/types";
 
-const LayoutHeaderUI = (props: any) => {
+const LayoutHeaderUI = (props: ILayoutHeaderUI) => {
   return (
     <>
       <S.Wrapper>
@@ -20,20 +20,19 @@ const LayoutHeaderUI = (props: any) => {
             <CodeCampLogosvg width="236" height="36" fill="#000" />
           </div>
 
-          {props.loggedIn?._id ? (
+          {props.accessToken ? (
             <S.UserInfoBox>
               <S.FlexBox onClick={props.onClickModal}>
-                {props.loggedIn?.picture === null ? (
-                  <Profilesvg
-                    margin="0 28px 0 0"
-                    width="48"
-                    height="48"
-                    fill="#c4c4c4"
-                  />
-                ) : (
-                  <S.Picture src={props.loggedIn?.picture} />
-                )}
-                <ProfileArrow width="12" height="9" fill="#000" />
+                <UserInfoPicure
+                  data={props.userloggedInData?.fetchUserLoggedIn?.picture}
+                  size="48"
+                />
+                <ProfileArrow
+                  width="12"
+                  height="9"
+                  fill="#000"
+                  margin="0 0 0 28px"
+                />
               </S.FlexBox>
 
               {props.isModal && (
@@ -48,28 +47,25 @@ const LayoutHeaderUI = (props: any) => {
                   </S.ModalabsoluteBox>
 
                   <S.ModalBox>
-                    <S.UserInfo>
-                      {props.loggedIn?.picture === null ? (
-                        <div style={{ position: "relative" }}>
-                          <Profilesvg width="48" height="48" fill="#c4c4c4" />
-                          <S.SettingabsoluteBox
-                            onClick={props.onClickChangeImage}
-                          >
-                            <ImageChange
-                              width="16"
-                              height="16"
-                              CilcleFill="#000"
-                              SettingFill="#fff"
-                            />
-                          </S.SettingabsoluteBox>
-                        </div>
-                      ) : (
-                        <S.Picture src={props.loggedIn?.picture} />
-                      )}
+                    <S.UserInfo onClick={props.onClickMypage}>
+                      <UserInfoPicure
+                        data={
+                          props.userloggedInData?.fetchUserLoggedIn?.picture
+                        }
+                        size="48"
+                      />
                       <S.User>
-                        <S.UserName>{props.loggedIn?.name}</S.UserName>
+                        <S.UserName>
+                          {props.userloggedInData?.fetchUserLoggedIn?.name}
+                        </S.UserName>
                         <S.UserPoint>
-                          {PointComma(props.loggedIn?.userPoint?.amount)} P
+                          {PointComma(
+                            Number(
+                              props.userloggedInData?.fetchUserLoggedIn
+                                ?.userPoint?.amount
+                            )
+                          )}
+                          P
                         </S.UserPoint>
                       </S.User>
                     </S.UserInfo>

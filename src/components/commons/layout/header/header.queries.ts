@@ -14,11 +14,6 @@ export const FETCH_USER_LOGGED_IN = gql`
   }
 `;
 
-export const FETCH_USED_ITEMS_COUNT_IPICKED = gql`
-  query fetchUseditemsCountIPicked {
-    fetchUseditemsCountIPicked
-  }
-`;
 export const LOGOUT_USER = gql`
   mutation logoutUser {
     logoutUser

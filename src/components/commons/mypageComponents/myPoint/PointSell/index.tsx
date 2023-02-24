@@ -1,4 +1,4 @@
-import * as S from "../MyPoint.styles";
+import * as S from "../myPoint.styles";
 import { v4 as uuidv4 } from "uuid";
 import { PointComma } from "../../../../../commons/libraries/point";
 import { gql, useQuery } from "@apollo/client";
@@ -9,7 +9,7 @@ import {
   IQuery,
   IQueryFetchPointTransactionsOfSellingArgs,
 } from "../../../../../../path/to/types/generated/types";
-import Pagination01 from "../../../paginations/01/Pagination01.container";
+import Pagination01 from "../../../paginations/01/pagination01.container";
 import { useRouter } from "next/router";
 
 const FETCH_POINT_TRANSACTIONS_OF_SELLING = gql`
@@ -41,9 +41,9 @@ const PointSell = () => {
     IQueryFetchPointTransactionsOfSellingArgs
   >(FETCH_POINT_TRANSACTIONS_OF_SELLING);
 
-  const { data: fetchPointTransactionsCountOfSellingData } = useQuery(
-    FETCH_POINT_TRANSACTIONS_COUNT_OF_SELLING
-  );
+  const { data: fetchPointTransactionsCountOfSellingData } = useQuery<
+    Pick<IQuery, "fetchPointTransactionsCountOfSelling">
+  >(FETCH_POINT_TRANSACTIONS_COUNT_OF_SELLING);
 
   const onClickMarketsDetail = (id: string) => (_: any) => {
     router.push(`./markets/${id}`);

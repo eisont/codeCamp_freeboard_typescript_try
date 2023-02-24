@@ -3,20 +3,26 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import {
-  FETCH_USED_ITEMS_COUNT_IPICKED,
-  FETCH_USER_LOGGED_IN,
-  LOGOUT_USER,
-} from "./header.query";
+import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./header.queries";
 import LayoutHeaderUI from "./header.presenter";
+import {
+  IQuery,
+  IMutation,
+} from "../../../../../path/to/types/generated/types";
+import { useRecoilState } from "recoil";
+import { AccessTokenState } from "../../../../commons/store";
 
-const LayoutHeader = (props: any) => {
+const LayoutHeader = () => {
   const router = useRouter();
   const [isModal, setIsModal] = useState(false);
-  const [logoutUser] = useMutation(LOGOUT_USER);
 
-  const { data: IPicked } = useQuery(FETCH_USED_ITEMS_COUNT_IPICKED);
-  const { data: loggedIn } = useQuery(FETCH_USER_LOGGED_IN);
+  const [logoutUser] = useMutation<IMutation, "logoutUser">(LOGOUT_USER);
+
+  const [accessToken] = useRecoilState(AccessTokenState);
+
+  const { data: userloggedInData } = useQuery<IQuery, "fetchUserLoggedIn">(
+    FETCH_USER_LOGGED_IN
+  );
 
   // 메인페이지 이동
   const onClickHome = () => {
@@ -25,6 +31,10 @@ const LayoutHeader = (props: any) => {
   // 로그인 이동
   const onClickLogin = () => {
     router.push("/login");
+  };
+
+  const onClickMypage = () => {
+    router.push("/mypage");
   };
   // 로그아웃 기능
   const onClickLogout = async () => {
@@ -50,21 +60,20 @@ const LayoutHeader = (props: any) => {
   // 포인트 충전 모달 창 띄우기
   const onClickCharge = () => {
     setIsModal(false);
-    props.setIsChargeModal(true);
   };
 
   return (
     <LayoutHeaderUI
-      IPicked={IPicked}
-      loggedIn={loggedIn?.fetchUserLoggedIn}
+      accessToken={accessToken}
+      userloggedInData={userloggedInData}
       onClickHome={onClickHome}
       onClickLogin={onClickLogin}
+      onClickMypage={onClickMypage}
       onClickLogout={onClickLogout}
       onClickSignup={onClickSignup}
       onClickModal={onClickModal}
       isModal={isModal}
       onClickChangeImage={onClickChangeImage}
-      isChargeModal={props.isChargeModal}
       onClickCharge={onClickCharge}
     />
   );

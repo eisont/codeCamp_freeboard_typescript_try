@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IQuery } from "../../../../path/to/types/generated/types";
+import { ISellerInfo } from "../../../../path/to/types/components/commons/types";
 import { getDateComma } from "../../../commons/libraries/utils";
 import UserInfoPicure from "./userInfoPicture";
 
@@ -24,11 +24,7 @@ const CreatedAt = styled.div`
   font-size: 12px;
 `;
 
-interface ITypes {
-  data: Pick<IQuery, "fetchUseditem"> | undefined;
-}
-
-const SellerInfo = (pr: ITypes) => {
+const SellerInfo = (pr: ISellerInfo) => {
   return (
     <SellerInfoBox>
       <UserInfoPicure

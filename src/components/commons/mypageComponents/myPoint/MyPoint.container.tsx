@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MyPointUI from "./MyPoint.presenter";
+import MyPointUI from "./myPoint.presenter";
 
 const MyPoint = () => {
   const [total, setTotal] = useState(true);

@@ -1,9 +1,12 @@
-import * as S from "../MyPoint.styles";
+import * as S from "../myPoint.styles";
 import { v4 as uuidv4 } from "uuid";
 import { PointComma } from "../../../../../commons/libraries/point";
 import { gql, useQuery } from "@apollo/client";
 import { getDateComma } from "../../../../../commons/libraries/utils";
-import { IQuery } from "../../../../../../path/to/types/generated/types";
+import {
+  IQuery,
+  IQueryFetchPointTransactionsArgs,
+} from "../../../../../../path/to/types/generated/types";
 
 export const FETCH_POINT_TRANSACTIONS = gql`
   query fetchPointTransactions($search: String, $page: Int) {
@@ -21,9 +24,10 @@ export const FETCH_POINT_TRANSACTIONS = gql`
 const PointFullHistory = () => {
   const TotalTh = ["날짜", "내용", "거래 및 충전 내역", "잔액"];
 
-  const { data: PointData } = useQuery<IQuery, "fetchPointTransactions">(
-    FETCH_POINT_TRANSACTIONS
-  );
+  const { data: PointData } = useQuery<
+    Pick<IQuery, "fetchPointTransactions">,
+    IQueryFetchPointTransactionsArgs
+  >(FETCH_POINT_TRANSACTIONS);
 
   return (
     <S.SectionMain>

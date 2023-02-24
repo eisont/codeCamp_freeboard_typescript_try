@@ -5,17 +5,14 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 import { AccessTokenState } from "../../../commons/store";
 import { onError } from "@apollo/client/link/error";
+import { IApolloSetting } from "../../../../path/to/types/components/commons/types";
 
-interface IAppProps {
-  children: ReactNode;
-}
-
-const ApolloSetting = (pr: IAppProps) => {
+const ApolloSetting = (pr: IApolloSetting) => {
   const [accessToken, setAccessToken] = useRecoilState(AccessTokenState);
 
   useEffect(() => {
@@ -45,7 +42,7 @@ const ApolloSetting = (pr: IAppProps) => {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://backend09.codebootcamp.co.kr/graphql",
+    uri: "https://backend10.codebootcamp.co.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
