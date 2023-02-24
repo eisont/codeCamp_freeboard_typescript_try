@@ -1,7 +1,7 @@
 // 중고마켓 목록 styles
 
 import styled from "@emotion/styled";
-import { IPropsStyle } from "./MarketsList.types";
+import { IMarketListStyle } from "../../../../../path/to/types/components/units/types";
 
 export const Wrapper = styled.div`
   margin: 0 auto 377px auto;
@@ -120,7 +120,7 @@ export const SoldMenu = styled.div`
   font-weight: 400;
   font-size: 18px;
   color: #4f4f4f;
-  border-bottom: ${(props: IPropsStyle) =>
+  border-bottom: ${(props: IMarketListStyle) =>
     !props.isSoldout && "2px solid #ffd600"};
 
   &:hover {
@@ -135,7 +135,7 @@ export const SoldOutMenu = styled.div`
   font-weight: 400;
   font-size: 18px;
   color: #4f4f4f;
-  border-bottom: ${(props: IPropsStyle) =>
+  border-bottom: ${(props: IMarketListStyle) =>
     props.isSoldout ? "2px solid #ffd600" : ""};
 
   &:hover {
@@ -272,8 +272,8 @@ export const Name = styled.span`
 `;
 export const Word = styled.span`
   font-size: 24px;
-  font-weight: ${(pr: IPropsStyle) => (pr.isMatched ? "900" : "500")};
-  color: ${(pr: IPropsStyle) => (pr.isMatched ? "#ffd600" : "#000")};
+  font-weight: ${(pr: IMarketListStyle) => (pr.isMatched ? "900" : "500")};
+  color: ${(pr: IMarketListStyle) => (pr.isMatched ? "#ffd600" : "#000")};
 `;
 export const Remarks = styled.div`
   margin: 4px 0 8px 0;
@@ -287,13 +287,8 @@ export const ColumnTags = styled.div`
   color: #bdbdbd;
 `;
 
-export const SellerIcon = styled.img`
-  margin: 0 6px 0 0;
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-`;
 export const Seller = styled.div`
+  margin: 0 0 0 6px;
   margin-right: 22px;
   font-size: 16px;
   font-weight: 700;

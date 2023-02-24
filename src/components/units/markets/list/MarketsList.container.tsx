@@ -2,7 +2,7 @@
 
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
@@ -11,7 +11,7 @@ import MarketsListUI from "./MarketsList.presenter";
 import {
   FETCH_USED_ITEMS,
   FETCH_USED_ITEMS_OF_THE_BEST,
-} from "./MarketsList.query";
+} from "./MarketsList.queries";
 
 const MarketsList = () => {
   const router = useRouter();
@@ -43,10 +43,8 @@ const MarketsList = () => {
     }
   );
 
-  const onClickMoveToMarketDetail = (event: MouseEvent<HTMLElement>) => {
-    if (event.target instanceof Element) {
-      router.push(`/markets/${event.currentTarget.id}`);
-    }
+  const onClickMoveToMarketDetail = (id: string) => (_: any) => {
+    router.push(`/markets/${id}`);
   };
 
   const onLoadMore = () => {

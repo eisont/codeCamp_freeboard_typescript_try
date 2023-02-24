@@ -1,30 +1,19 @@
 // 중고마켓 목록 presenter
 
-import * as S from "./MarketsList.style";
+import * as S from "./MarketsList.styles";
 import { PointComma } from "../../../../commons/libraries/point";
-import {
-  Eurosvg,
-  Heartsvg,
-  Profilesvg,
-} from "../../../../commons/styles/Iconsvg";
+import { Eurosvg, Heartsvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
-import { IPropsPreItem } from "./MarketsList.types";
 import { v4 as uuidv4 } from "uuid";
+import UserInfoPicure from "../../../commons/Info/userInfoPicture";
+import { IMarketListUIItem } from "../../../../../path/to/types/components/units/types";
 
-const MarketListUIItem = (pr: IPropsPreItem) => {
+const MarketsListUIItem = (pr: IMarketListUIItem) => {
   const ImageResult = pr.el?.images?.filter((el) => el)[0];
   const ImageFilter = ImageResult?.includes(`http`);
 
-  const SellerPicture1 = pr.el?.seller?.picture?.includes(`data:image`);
-
-  const SellerPicture2 = pr.el?.seller?.picture?.includes(
-    `https://storage.googleapis.com/`
-  );
-
-  const SellerPictureResult = SellerPicture1 || SellerPicture2;
-
   return (
-    <S.Row key={pr.el?._id}>
+    <S.Row onClick={pr.onClickMoveToMarketDetail(pr.el?._id)}>
       <S.FlexOutBox>
         <S.FlexBox>
           {!ImageResult ? (
@@ -38,8 +27,6 @@ const MarketListUIItem = (pr: IPropsPreItem) => {
                   ? ImageResult
                   : `https://storage.googleapis.com/${ImageResult}`
               }
-              id={pr.el?._id}
-              onClick={pr.onClickMoveToMarketDetail}
             />
           )}
 
@@ -62,22 +49,8 @@ const MarketListUIItem = (pr: IPropsPreItem) => {
             )}
 
             <S.FlexBox style={{ margin: "24px 0 0 0" }}>
-              {pr.el?.seller?.picture === null ? (
-                <Profilesvg
-                  margin="0 6px 0 0"
-                  width="20"
-                  height="20"
-                  fill="#bdbdbd"
-                />
-              ) : (
-                <S.SellerIcon
-                  src={
-                    SellerPictureResult
-                      ? pr.el?.seller?.picture
-                      : `https://storage.googleapis.com/${pr.el?.seller?.picture}`
-                  }
-                />
-              )}
+              <UserInfoPicure size="20" data={pr.el?.seller?.picture} />
+
               {pr.el?.seller?.name?.length === 0 ? (
                 <S.Seller> 판매자 이름 없음 </S.Seller>
               ) : (
@@ -103,4 +76,4 @@ const MarketListUIItem = (pr: IPropsPreItem) => {
   );
 };
 
-export default MarketListUIItem;
+export default MarketsListUIItem;

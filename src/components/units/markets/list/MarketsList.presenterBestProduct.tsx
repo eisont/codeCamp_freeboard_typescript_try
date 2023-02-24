@@ -1,16 +1,16 @@
 // 중고마켓 목록 presenter
 
-import * as S from "./MarketsList.style";
+import * as S from "./MarketsList.styles";
 import { v4 as uuidv4 } from "uuid";
 import { PointComma } from "../../../../commons/libraries/point";
 import { Heartsvg } from "../../../../commons/styles/Iconsvg";
 import MarketListCarousel from "../../../commons/carousel/marketList";
-import { IPropsBestProducts } from "./MarketsList.types";
+import { IMarketListBestProducts } from "../../../../../path/to/types/components/units/types";
 
-const MarketListBestProduct = (pr: IPropsBestProducts) => {
+const MarketListBestProducts = (pr: IMarketListBestProducts) => {
   return (
     <S.BestProductBox key={uuidv4()}>
-      <div id={pr.el._id} onClick={pr.onClickMoveToMarketDetail}>
+      <div onClick={pr.onClickMoveToMarketDetail(pr.el._id)}>
         <MarketListCarousel data={pr?.el?.images} />
       </div>
       <S.BestProductName>{pr.el?.name}</S.BestProductName>
@@ -31,4 +31,4 @@ const MarketListBestProduct = (pr: IPropsBestProducts) => {
   );
 };
 
-export default MarketListBestProduct;
+export default MarketListBestProducts;

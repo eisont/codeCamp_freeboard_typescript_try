@@ -1,13 +1,13 @@
 // 중고마켓 목록 presenter
 
 import InfiniteScroll from "react-infinite-scroller";
-import Searchbar01 from "../../../commons/searchbars/01/Searchbar01.container";
-import * as S from "./MarketsList.style";
-import MarketListUIItem from "./MarketsList.presenterItem";
-import MarketListBestProduct from "./MarketsList.presenterBestProduct";
-import { IPropsPre } from "./MarketsList.types";
+import * as S from "./MarketsList.styles";
+import MarketsListUIItem from "./MarketsList.presenterItem";
+import MarketListBestProducts from "./MarketsList.presenterBestProduct";
+import { IMarketListUI } from "../../../../../path/to/types/components/units/types";
+import Searchbar01 from "../../../commons/searchbars/01/searchbar01.container";
 
-const MarketListUI = (pr: IPropsPre) => {
+const MarketsListUI = (pr: IMarketListUI) => {
   if (!pr.MarketsItemsData) return <div />;
 
   return (
@@ -16,7 +16,7 @@ const MarketListUI = (pr: IPropsPre) => {
         <S.BestText>베스트 상품</S.BestText>
         <S.BestProduct>
           {pr.BestProductData?.fetchUseditemsOfTheBest.map((el) => (
-            <MarketListBestProduct
+            <MarketListBestProducts
               key={el._id}
               el={el}
               onClickMoveToMarketDetail={pr.onClickMoveToMarketDetail}
@@ -28,7 +28,7 @@ const MarketListUI = (pr: IPropsPre) => {
       <S.SearchBox>
         <S.MenuBox>
           <S.SoldMenu onClick={pr.onClickSoldItems} isSoldout={pr.isSoldout}>
-            판매중 상품
+            판매 중 상품
           </S.SoldMenu>
           <S.SoldOutMenu
             onClick={pr.onClickSoldOutItems}
@@ -52,7 +52,7 @@ const MarketListUI = (pr: IPropsPre) => {
             useWindow={false}
           >
             {pr.MarketsItemsData?.fetchUseditems.map((el) => (
-              <MarketListUIItem
+              <MarketsListUIItem
                 key={el._id}
                 el={el}
                 keyword={pr.keyword}
@@ -70,4 +70,4 @@ const MarketListUI = (pr: IPropsPre) => {
   );
 };
 
-export default MarketListUI;
+export default MarketsListUI;
