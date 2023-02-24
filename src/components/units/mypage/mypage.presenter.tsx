@@ -1,18 +1,18 @@
 import Script from "next/script";
 import { PointComma } from "../../../commons/libraries/point";
-import * as S from "./mypage.style";
+import * as S from "./mypage.styles";
 import {
   Cartsvg,
   PointPigsvg,
   Profilesvg,
 } from "../../../commons/styles/Iconsvg";
-import MyMarketsItems from "../../commons/mypageComponents/myMarketItems/MyMarketItems.container";
-import MyPoint from "../../commons/mypageComponents/myPoint/MyPoint.container";
-import MyProfile from "../../commons/mypageComponents/myProfile/MyProfile.container";
-import Uploads02 from "../../commons/uploads/02/Uploads02.container";
-import { IPropsPre } from "./mypage.types";
+import UserInfoPicure from "../../commons/Info/userInfoPicture";
+import { IMypageUI } from "../../../../path/to/types/components/units/types";
+import MyMarketsItems from "../../commons/mypageComponents/myMarketItems/myMarketItems.container";
+import MyPoint from "../../commons/mypageComponents/myPoint/myPoint.container";
+import MyProfile from "../../commons/mypageComponents/myProfile/myProfile.container";
 
-const MypageUIpage = (pr: IPropsPre) => {
+const MypageUI = (pr: IMypageUI) => {
   return (
     <>
       <Script
@@ -28,12 +28,16 @@ const MypageUIpage = (pr: IPropsPre) => {
         <S.UserInfo>
           <S.Title>MYPAGE</S.Title>
 
-          <Uploads02
-            picture={pr.loggedInUser?.picture}
-            myProfile={pr.myProfile}
-          />
+          <div style={{ margin: "48px 0 28px 0" }}>
+            <UserInfoPicure
+              data={pr.loggedInUserData?.fetchUserLoggedIn?.picture}
+              size="80"
+            />
+          </div>
 
-          <S.UserName>{pr.loggedInUser?.name}</S.UserName>
+          <S.UserName>
+            {pr.loggedInUserData?.fetchUserLoggedIn?.name}
+          </S.UserName>
           <S.UserPoint>
             <PointPigsvg
               width="20"
@@ -42,7 +46,12 @@ const MypageUIpage = (pr: IPropsPre) => {
               margin="0 8px 0 0"
             />
             <div>
-              {PointComma(Number(pr.loggedInUser?.userPoint?.amount))}원
+              {PointComma(
+                Number(
+                  pr.loggedInUserData?.fetchUserLoggedIn?.userPoint?.amount
+                )
+              )}
+              원
             </div>
           </S.UserPoint>
 
@@ -91,4 +100,4 @@ const MypageUIpage = (pr: IPropsPre) => {
   );
 };
 
-export default MypageUIpage;
+export default MypageUI;
