@@ -5,18 +5,18 @@ import { ChangeEvent, useState } from "react";
 import {
   CREATE_USED_ITEMS_QUESTION_ANSWER,
   UPDATE_USED_ITEMS_QUESTION_ANSWER,
-} from "./MarketCommentAnswerWrite.queries";
+} from "./MarketQuestionAnswerWrite.queries";
 import { Modal, notification } from "antd";
-import MarketCommentAnswerWriteUI from "./MarketCommentAnswerWrite.presenter";
-import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../list/MarketCommentAnswerList.queries";
-import { IPropsAnswerWrite } from "./MarketCommentAnswerWrite.types";
+import MarketQuestionAnswerWriteUI from "./MarketQuestionAnswerWrite.presenter";
+import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../list/MarketQuestiontAnswersList.queries";
 import {
   IMutation,
   IMutationCreateUseditemQuestionAnswerArgs,
   IMutationUpdateUseditemQuestionAnswerArgs,
 } from "../../../../../path/to/types/generated/types";
+import { IMarketQuestionAnswerWrite } from "../../../../../path/to/types/components/units/types";
 
-const MarketCommentAnswerWrite = (pr: IPropsAnswerWrite) => {
+const MarketQuestionAnswerWrite = (pr: IMarketQuestionAnswerWrite) => {
   const [contents, setContents] = useState("");
 
   const [createUseditemQuestionAnswer] = useMutation<
@@ -34,7 +34,7 @@ const MarketCommentAnswerWrite = (pr: IPropsAnswerWrite) => {
   };
 
   const onClickCancel = () => {
-    pr.setIsEditSub(!pr.isEditSub);
+    pr.setIsAnswerEdit(!pr.isAnswerEdit);
   };
 
   const onClickAnswer = async () => {
@@ -42,12 +42,12 @@ const MarketCommentAnswerWrite = (pr: IPropsAnswerWrite) => {
       await createUseditemQuestionAnswer({
         variables: {
           createUseditemQuestionAnswerInput: { contents },
-          useditemQuestionId: String(pr.CommentElID),
+          useditemQuestionId: String(pr.QuestionElID),
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: String(pr.CommentElID) },
+            variables: { useditemQuestionId: String(pr.QuestionElID) },
           },
         ],
       });
@@ -55,7 +55,7 @@ const MarketCommentAnswerWrite = (pr: IPropsAnswerWrite) => {
         // 로그인한 사람이름
         message: `대댓글 등록하였습니다.`,
       });
-      pr.setIsEditSub(!pr.isEditSub);
+      pr.setIsAnswerEdit(!pr.isAnswerEdit);
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
@@ -74,31 +74,31 @@ const MarketCommentAnswerWrite = (pr: IPropsAnswerWrite) => {
       await updateUseditemQuestionAnswer({
         variables: {
           updateUseditemQuestionAnswerInput,
-          useditemQuestionAnswerId: String(pr.CommentAnswerEl?._id),
+          useditemQuestionAnswerId: String(pr.QuestionAnswerElID),
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: String(pr.CommentElID) },
+            variables: { useditemQuestionId: String(pr.QuestionElID) },
           },
         ],
       });
-      pr.setIsEditSub(!pr.isEditSub);
+      pr.setIsAnswerEdit(pr.isAnswerEdit);
     } catch (error: any) {
       alert(error.message);
     }
   };
 
   return (
-    <MarketCommentAnswerWriteUI
+    <MarketQuestionAnswerWriteUI
       onChangeContents={onChangeContents}
       onClickCancel={onClickCancel}
       onClickAnswer={onClickAnswer}
       onClickUpdate={onClickUpdate}
-      isEditSub={pr.isEditSub}
+      isAnswerEdit={pr.isAnswerEdit}
       contents={contents}
     />
   );
 };
 
-export default MarketCommentAnswerWrite;
+export default MarketQuestionAnswerWrite;

@@ -1,13 +1,13 @@
 // 중고마켓 댓글 등록 presenter
 
+import { IMarketQuestionWriteUI } from "../../../../../path/to/types/components/units/types";
 import { CommentIconsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./MarketCommentWrite.styles";
-import { IPropsCommentWritePre } from "./MarketCommentWrite.types";
+import * as S from "./MarketQuestionWrite.styles";
 
-const MarketCommentWriteUI = (pr: IPropsCommentWritePre) => {
+const MarketQuestionWriteUI = (pr: IMarketQuestionWriteUI) => {
   return (
     <S.Wrapper>
-      {!pr.isEdit && (
+      {!pr.isQuestionEdit && (
         // 댓글 입력창 보여줘
         <S.Title>
           <CommentIconsvg
@@ -28,11 +28,13 @@ const MarketCommentWriteUI = (pr: IPropsCommentWritePre) => {
         <S.BottomWrapper>
           <S.ContentsLength>{pr.contents.length}/100</S.ContentsLength>
           <div style={{ display: "flex" }}>
-            {pr.isEdit && <S.Button onClick={pr.onClickCancel}>취소</S.Button>}
+            {pr.isQuestionEdit && (
+              <S.Button onClick={pr.onClickCancel}>취소</S.Button>
+            )}
             <S.Button
-              onClick={pr.isEdit ? pr.onClickUpdate : pr.onClickComment}
+              onClick={pr.isQuestionEdit ? pr.onClickUpdate : pr.onClickComment}
             >
-              {pr.isEdit ? "수정하기" : "문의하기"}
+              {pr.isQuestionEdit ? "수정하기" : "문의하기"}
             </S.Button>
           </div>
         </S.BottomWrapper>
@@ -41,4 +43,4 @@ const MarketCommentWriteUI = (pr: IPropsCommentWritePre) => {
   );
 };
 
-export default MarketCommentWriteUI;
+export default MarketQuestionWriteUI;

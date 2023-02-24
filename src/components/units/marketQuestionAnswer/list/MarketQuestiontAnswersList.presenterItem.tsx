@@ -3,14 +3,13 @@
 // import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { Modal, notification } from "antd";
-import * as S from "./MarketCommentAnswerList.styles";
+import * as S from "./MarketQuestiontAnswersList.styles";
 import {
   DELETE_USED_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEMS_QUESTION_ANSWERS,
-} from "./MarketCommentAnswerList.queries";
+} from "./MarketQuestiontAnswersList.queries";
 import { useMutation } from "@apollo/client";
-import MarketCommentAnswerWrite from "../write/MarketCommentAnswerWrite.container";
-import MarketCommentAnswerEdit from "../../marketQuestionAnswerEdit/Edit/MarketCommentAnswerEdit.container";
+import MarketCommentAnswerWrite from "../write/MarketQuestionAnswerWrite.container";
 import {
   AnswerArrow,
   Closesvg,
@@ -18,14 +17,16 @@ import {
 } from "../../../../commons/styles/Iconsvg";
 import DOMPurify from "dompurify";
 import UserInfoPicure from "../../../commons/Info/userInfoPicture";
-import { IPropsCommentAnswerListItem } from "./MarketCommentAnswerList.types";
 import {
   IMutation,
   IMutationDeleteUseditemQuestionAnswerArgs,
 } from "../../../../../path/to/types/generated/types";
+import { IMarketQuestionAnswersListUIItem } from "../../../../../path/to/types/components/units/types";
 
-const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
-  const [isEditSub, setIsEditSub] = useState(false);
+const MarketQuestionAnswersListUIItem = (
+  pr: IMarketQuestionAnswersListUIItem
+) => {
+  const [isAnswerEdit, setIsAnswerEdit] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
 
   const [deleteUseditemQuestionAnswer] = useMutation<
@@ -34,7 +35,7 @@ const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
   >(DELETE_USED_ITEM_QUESTION_ANSWER);
 
   const onClickUpdate = () => {
-    setIsEditSub(!isEditSub);
+    setIsAnswerEdit(!isAnswerEdit);
     setIsUpdate(!isUpdate);
   };
 
@@ -42,17 +43,17 @@ const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
     try {
       await deleteUseditemQuestionAnswer({
         variables: {
-          useditemQuestionAnswerId: String(pr.CommentAnswerEl?._id),
+          useditemQuestionAnswerId: String(pr.QuestionAnswerEl?._id),
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: String(pr?.CommentAnswerEl) },
+            variables: { useditemQuestionId: String(pr?.QuestionElID) },
           },
         ],
       });
       notification.error({
-        message: `${pr.CommentAnswerEl?.contents} 대댓글이 삭제되었습니다.`,
+        message: `${pr.QuestionAnswerEl?.contents} 대댓글이 삭제되었습니다.`,
         placement: "topLeft",
       });
     } catch (error: any) {
@@ -62,7 +63,17 @@ const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
 
   return (
     <>
-      {!isEditSub && (
+      {isAnswerEdit && (
+        // 대댓글 수정
+        <MarketCommentAnswerWrite
+          isAnswerEdit={!isAnswerEdit}
+          setIsAnswerEdit={setIsAnswerEdit}
+          QuestionAnswerElID={pr.QuestionAnswerEl?._id}
+        />
+      )}
+
+      {!isAnswerEdit && (
+        // 대댓글 리스트
         <S.ItemWrapper>
           <S.Box>
             <AnswerArrow
@@ -73,17 +84,17 @@ const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
             />
             <UserInfoPicure
               size="40"
-              data={pr.CommentAnswerEl?.user?.picture}
+              data={pr.QuestionAnswerEl?.user?.picture}
             />
 
             <S.ContentsBox>
-              <S.Name>{pr.CommentAnswerEl?.user?.name}</S.Name>
+              <S.Name>{pr.QuestionAnswerEl?.user?.name}</S.Name>
 
               {typeof window !== "undefined" && (
                 <S.Contents
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(
-                      String(pr.CommentAnswerEl?.contents)
+                      String(pr.QuestionAnswerEl?.contents)
                     ),
                   }}
                 />
@@ -111,22 +122,8 @@ const MarketCommentAnswerListUIItem = (pr: IPropsCommentAnswerListItem) => {
           </S.OptionWrapper>
         </S.ItemWrapper>
       )}
-      {isEditSub && (
-        <MarketCommentAnswerWrite
-          isEditSub={!isEditSub}
-          setIsEditSub={setIsEditSub}
-          CommentAnswerEl={pr.CommentAnswerEl}
-        />
-      )}
-      {isUpdate && (
-        <MarketCommentAnswerEdit
-          CommentAnswerEl={pr.CommentAnswerEl}
-          isUpdate={isUpdate}
-          setIsUpdate={setIsUpdate}
-        />
-      )}
     </>
   );
 };
 
-export default MarketCommentAnswerListUIItem;
+export default MarketQuestionAnswersListUIItem;

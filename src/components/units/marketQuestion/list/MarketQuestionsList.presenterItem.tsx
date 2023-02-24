@@ -4,15 +4,15 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Modal, notification } from "antd";
-import MarketCommentWrite from "../write/MarketCommentWrite.container";
+import MarketCommentWrite from "../write/MarketQuestionWrite.container";
 import {
   DELETE_USED_ITEM_QUESTION,
   FETCH_USED_ITEM_QUESTIONS,
-} from "./MarketCommentList.queries";
-import * as S from "./MarketCommentList.styles";
+} from "./MarketQuestionsList.queries";
+import * as S from "./MarketQuestionsList.styles";
 import { getDateComma } from "../../../../commons/libraries/utils";
-import MarketCommentAnswerWrite from "../../marketQuestionAnswer/write/MarketCommentAnswerWrite.container";
-import MarketCommentAnswerList from "../../marketQuestionAnswer/list/MarketCommentAnswerList.container";
+import MarketCommentAnswerWrite from "../../marketQuestionAnswer/write/MarketQuestionAnswerWrite.container";
+import MarketCommentAnswerList from "../../marketQuestionAnswer/list/MarketQuestiontAnswersList.container";
 import {
   Closesvg,
   Pencilsvg,
@@ -20,16 +20,17 @@ import {
 } from "../../../../commons/styles/Iconsvg";
 import DOMPurify from "dompurify";
 import UserInfoPicure from "../../../commons/Info/userInfoPicture";
-import { IPropsPreItem } from "./MarketCommentList.types";
 import {
   IMutation,
   IMutationDeleteUseditemQuestionArgs,
 } from "../../../../../path/to/types/generated/types";
+import { IMarketQuestionsListUIItem } from "../../../../../path/to/types/components/units/types";
 
-const MarketCommentListUIItem = (pr: IPropsPreItem) => {
+const MarketQuestionsListUIItem = (pr: IMarketQuestionsListUIItem) => {
   const router = useRouter();
-  const [isEdit, setIsEdit] = useState(false);
-  const [isEditSub, setIsEditSub] = useState(false);
+
+  const [isQuestionEdit, setIsQuestionEdit] = useState(false);
+  const [isAnswerEdit, setIsAnswerEdit] = useState(false);
 
   const [deleteUseditemQuestion] = useMutation<
     Pick<IMutation, "deleteUseditemQuestion">,
@@ -37,17 +38,17 @@ const MarketCommentListUIItem = (pr: IPropsPreItem) => {
   >(DELETE_USED_ITEM_QUESTION);
 
   const onClickUpdate = () => {
-    setIsEdit((prev) => !prev);
+    setIsQuestionEdit((prev) => !prev);
   };
   const onClickCreateAnswer = () => {
-    setIsEditSub((prev) => !prev);
+    setIsAnswerEdit((prev) => !prev);
   };
 
   const onClickDelete = async () => {
     try {
       await deleteUseditemQuestion({
         variables: {
-          useditemQuestionId: String(pr.CommentEl?._id),
+          useditemQuestionId: String(pr.QuestionEl?._id),
         },
         refetchQueries: [
           {
@@ -57,7 +58,7 @@ const MarketCommentListUIItem = (pr: IPropsPreItem) => {
         ],
       });
       notification.error({
-        message: `${pr.CommentEl?.contents} 댓글이 삭제되었습니다.`,
+        message: `${pr.QuestionEl?.contents} 댓글이 삭제되었습니다.`,
         placement: "topLeft",
       });
     } catch (error: any) {
@@ -67,32 +68,33 @@ const MarketCommentListUIItem = (pr: IPropsPreItem) => {
 
   return (
     <>
-      {isEdit && (
+      {isQuestionEdit && (
         // 댓글 작성
         <MarketCommentWrite
-          isEdit={true}
-          setIsEdit={setIsEdit}
-          CommentElID={pr.CommentEl?._id}
+          isQuestionEdit={true}
+          setIsQuestionEdit={setIsQuestionEdit}
+          QuestionElID={pr.QuestionEl?._id}
         />
       )}
-      {!isEdit && (
+
+      {!isQuestionEdit && (
         // 댓글 리스트
         <S.ItemWrapper>
           <S.FlexBox>
-            <UserInfoPicure size="40" data={pr.CommentEl?.user?.picture} />
+            <UserInfoPicure size="40" data={pr.QuestionEl?.user?.picture} />
 
             <S.TitleBox>
-              <S.UserName>{pr.CommentEl?.user?.name}</S.UserName>
+              <S.UserName>{pr.QuestionEl?.user?.name}</S.UserName>
 
               {typeof window !== "undefined" && (
                 <S.Contents
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(String(pr.CommentEl?.contents)),
+                    __html: DOMPurify.sanitize(String(pr.QuestionEl?.contents)),
                   }}
                 />
               )}
 
-              <S.CreateAt>{getDateComma(pr.CommentEl?.createdAt)}</S.CreateAt>
+              <S.CreateAt>{getDateComma(pr.QuestionEl?.createdAt)}</S.CreateAt>
             </S.TitleBox>
           </S.FlexBox>
 
@@ -119,23 +121,23 @@ const MarketCommentListUIItem = (pr: IPropsPreItem) => {
           </S.BtBox>
         </S.ItemWrapper>
       )}
-      {isEditSub && (
+
+      {isAnswerEdit && (
         // 대댓글 작성
         <MarketCommentAnswerWrite
-          isEditSub={true}
-          setIsEditSub={setIsEditSub}
-          CommentElID={pr.CommentEl?._id}
+          isAnswerEdit={true}
+          setIsAnswerEdit={setIsAnswerEdit}
+          QuestionElID={pr.QuestionEl?._id}
         />
       )}
+
       <MarketCommentAnswerList
         // 대댓글 리스트
-        isEditSub={isEditSub}
-        setIsEditSub={setIsEditSub}
-        CommentElID={pr.CommentEl?._id}
+        QuestionElID={pr.QuestionEl?._id}
       />
       <S.Hr />
     </>
   );
 };
 
-export default MarketCommentListUIItem;
+export default MarketQuestionsListUIItem;

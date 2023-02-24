@@ -1,9 +1,9 @@
 // 중고마켓 댓글 등록 presenter
 
-import * as S from "./MarketCommentAnswerWrite.styles";
-import { IPropsAnswerWritePre } from "./MarketCommentAnswerWrite.types";
+import { IMarketQuestionAnswerWriteUI } from "../../../../../path/to/types/components/units/types";
+import * as S from "./MarketQuestionAnswerWrite.styles";
 
-const MarketCommentAnswerWriteUI = (pr: IPropsAnswerWritePre) => {
+const MarketQuestionAnswerWriteUI = (pr: IMarketQuestionAnswerWriteUI) => {
   return (
     <S.Wrapper>
       {/* isEdit이 false일때 댓글 입력창 보여줘 */}
@@ -19,9 +19,9 @@ const MarketCommentAnswerWriteUI = (pr: IPropsAnswerWritePre) => {
           <div style={{ display: "flex" }}>
             <S.Button onClick={pr.onClickCancel}> 취소 </S.Button>
             <S.Button
-              onClick={pr.isEditSub ? pr.onClickAnswer : pr.onClickUpdate}
+              onClick={pr.isAnswerEdit ? pr.onClickAnswer : pr.onClickUpdate}
             >
-              {pr.isEditSub ? "등록하기" : "수정하기"}
+              {pr.isAnswerEdit ? "등록하기" : "수정하기"}
             </S.Button>
           </div>
         </S.BottomWrapper>
@@ -30,4 +30,4 @@ const MarketCommentAnswerWriteUI = (pr: IPropsAnswerWritePre) => {
   );
 };
 
-export default MarketCommentAnswerWriteUI;
+export default MarketQuestionAnswerWriteUI;

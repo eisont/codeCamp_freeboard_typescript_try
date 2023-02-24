@@ -6,10 +6,10 @@ import {
   IQuery,
   IQueryFetchUseditemQuestionsArgs,
 } from "../../../../../path/to/types/generated/types";
-import MarketCommentListUI from "./MarketCommentList.presenter";
-import { FETCH_USED_ITEM_QUESTIONS } from "./MarketCommentList.queries";
+import MarketQuestionsListUI from "./MarketQuestionsList.presenter";
+import { FETCH_USED_ITEM_QUESTIONS } from "./MarketQuestionsList.queries";
 
-const MarketCommentList = () => {
+const MarketQuestionsList = () => {
   const router = useRouter();
 
   const { data, fetchMore } = useQuery<
@@ -39,7 +39,7 @@ const MarketCommentList = () => {
     });
   };
 
-  return <MarketCommentListUI data={data} onLoadMore={onLoadMore} />;
+  return <MarketQuestionsListUI data={data} onLoadMore={onLoadMore} />;
 };
 
-export default MarketCommentList;
+export default MarketQuestionsList;

@@ -6,23 +6,24 @@ import { ChangeEvent, useState } from "react";
 import {
   CREATE_USED_ITEM_QUESTION,
   UPDATE_USED_ITEM_QUESTION,
-} from "./MarketCommentWrite.queries";
+} from "./MarketQuestionWrite.queries";
 import {
   FETCH_USED_ITEM_QUESTIONS,
   FETCH_USER_LOGGED_IN,
-} from "../list/MarketCommentList.queries";
+} from "../list/MarketQuestionsList.queries";
 import { Modal, notification } from "antd";
-import MarketCommentWriteUI from "./MarketCommentWrite.presenter";
-import { IPropsCommentWrite } from "./MarketCommentWrite.types";
+import MarketQuestionWriteUI from "./MarketQuestionWrite.presenter";
 import {
   IMutation,
   IMutationCreateUseditemQuestionArgs,
   IMutationUpdateUseditemQuestionArgs,
   IQuery,
 } from "../../../../../path/to/types/generated/types";
+import { IMarketQuestionWrite } from "../../../../../path/to/types/components/units/types";
 
-const MarketCommentWrite = (pr: IPropsCommentWrite) => {
+const MarketQuestionWrite = (pr: IMarketQuestionWrite) => {
   const router = useRouter();
+
   const [contents, setContents] = useState("");
 
   const [createUseditemQuestion] = useMutation<
@@ -44,7 +45,7 @@ const MarketCommentWrite = (pr: IPropsCommentWrite) => {
   };
 
   const onClickCancel = () => {
-    pr.setIsEdit?.(false);
+    pr.setIsQuestionEdit?.(false);
   };
 
   // 상세보기 댓글창 등록하기 버튼
@@ -60,7 +61,7 @@ const MarketCommentWrite = (pr: IPropsCommentWrite) => {
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS,
-            variables: { useditemId: router.query.useditemId },
+            variables: { useditemId: String(router.query.useditemId) },
           },
         ],
       });
@@ -86,7 +87,7 @@ const MarketCommentWrite = (pr: IPropsCommentWrite) => {
       await updateUseditemQuestion({
         variables: {
           updateUseditemQuestionInput,
-          useditemQuestionId: String(pr.CommentElID),
+          useditemQuestionId: String(pr.QuestionElID),
         },
         refetchQueries: [
           {
@@ -95,22 +96,22 @@ const MarketCommentWrite = (pr: IPropsCommentWrite) => {
           },
         ],
       });
-      pr.setIsEdit?.(false);
+      pr.setIsQuestionEdit?.(false);
     } catch (errors: any) {
       alert(errors.message);
     }
   };
 
   return (
-    <MarketCommentWriteUI
+    <MarketQuestionWriteUI
       onChangeContents={onChangeContents}
       onClickCancel={onClickCancel}
       onClickComment={onClickComment}
       onClickUpdate={onClickUpdate}
-      isEdit={pr.isEdit}
+      isQuestionEdit={pr.isQuestionEdit}
       contents={contents}
     />
   );
 };
 
-export default MarketCommentWrite;
+export default MarketQuestionWrite;
