@@ -2,22 +2,33 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Modal, notification } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import { IQuery } from "../../../../../path/to/types/generated/types";
-import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.query";
+import { IBoardCommentWrite } from "../../../../../path/to/types/components/units/types";
+import {
+  IMutation,
+  IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+  IQuery,
+} from "../../../../../path/to/types/generated/types";
+import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentsList.queries";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_USER_LOGGED_IN,
   UPDATE_BOARD_COMMENT,
-} from "./BoardCommentWrite.query";
-import { IPropsCon } from "./BoardCommentWrite.types";
+} from "./BoardCommentWrite.queries";
 
-const BoardCommentWrite = (pr: IPropsCon) => {
+const BoardCommentWrite = (pr: IBoardCommentWrite) => {
   const { data: LoggedInUserData } = useQuery<IQuery, "fetchUserLoggedIn">(
     FETCH_USER_LOGGED_IN
   );
-  const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
+  const [createBoardComment] = useMutation<
+    Pick<IMutation, "createBoardComment">,
+    IMutationCreateBoardCommentArgs
+  >(CREATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT);
 
   const router = useRouter();
   const [writer, setWriter] = useState("");
@@ -77,7 +88,7 @@ const BoardCommentWrite = (pr: IPropsCon) => {
   };
 
   const onClickCancel = () => {
-    pr.setIsEdit(false);
+    pr.setIsEdit((prev) => !prev);
   };
 
   const onClickUpdate = async () => {
@@ -91,17 +102,18 @@ const BoardCommentWrite = (pr: IPropsCon) => {
     }
 
     try {
-      if (!pr.el?._id) return;
+      if (!pr.BoardCommentEl?._id) return;
 
       const updateBoardCommentInput = { contents: "", rating: 0 };
       if (contents) updateBoardCommentInput.contents = contents;
-      if (star !== pr.el?.rating) updateBoardCommentInput.rating = star;
+      if (star !== pr.BoardCommentEl?.rating)
+        updateBoardCommentInput.rating = star;
 
       await updateBoardComment({
         variables: {
           updateBoardCommentInput,
           password,
-          boardCommentId: pr.el?._id,
+          boardCommentId: pr.BoardCommentEl?._id,
         },
         refetchQueries: [
           {

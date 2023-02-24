@@ -9,7 +9,7 @@ import {
   FETCH_BOARD,
   LIKE_BOARD,
   DISLIKE_BOARD,
-} from "./BoardDetail.query";
+} from "./BoardDetail.queries";
 import {
   IMutation,
   IMutationDeleteBoardArgs,

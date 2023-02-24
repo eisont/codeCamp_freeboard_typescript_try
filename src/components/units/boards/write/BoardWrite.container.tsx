@@ -9,8 +9,13 @@ import {
   IMutationCreateBoardArgs,
 } from "../../../../../path/to/types/generated/types";
 import BaordWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD } from "./BoardWrite.query";
-import { fileType, IAddressData, IData, IPropsCon } from "./BoardWrite.types";
+import { CREATE_BOARD } from "./BoardWrite.queries";
+import {
+  IBoardWrite,
+  IBoardWriteAddressData,
+  IBoardWriteData,
+  IBoardWritefileType,
+} from "../../../../../path/to/types/components/units/types";
 
 const schema = yup.object({
   writer: yup.string().required("작성자는 필수 입력사항입니다."),
@@ -29,7 +34,7 @@ const updateschema = yup.object({
   youtubeUrl: yup.string().url("url을 정확히 작성해주세요."),
 });
 
-const BoardWrite = (pr: IPropsCon) => {
+const BoardWrite = (pr: IBoardWrite) => {
   // ====================================================================================
 
   // const { data: loggedInUser } = useQuery<IQuery, "fetchUserLoggedIn">(
@@ -73,19 +78,19 @@ const BoardWrite = (pr: IPropsCon) => {
   const onClickAddressSearch = () => {
     setIsOpen((prev) => !prev);
   };
-  const onCompleteAddressSearch = (data: IAddressData) => {
+  const onCompleteAddressSearch = (data: IBoardWriteAddressData) => {
     setAddress(data.address);
     setZonecode(data.zonecode);
     setIsOpen(false);
   };
 
-  const onChangeFileUrls = (fileUrl: fileType, index: number) => {
+  const onChangeFileUrls = (fileUrl: IBoardWritefileType, index: number) => {
     const newFileUrls = [...fileUrls];
     newFileUrls[index] = String(fileUrl);
     setFileUrls(newFileUrls);
   };
 
-  const onClickSubmit = async (data: IData) => {
+  const onClickSubmit = async (data: IBoardWriteData) => {
     try {
       const result = await createBoard({
         variables: {

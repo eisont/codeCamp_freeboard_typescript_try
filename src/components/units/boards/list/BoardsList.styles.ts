@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IPropsStyle } from "./BoardList.types";
+import { IBoardsListUIStyle } from "../../../../../path/to/types/components/units/types";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -116,7 +116,8 @@ export const SectionBox = styled.div`
   width: 1200px;
 `;
 export const Word = styled.span`
-  color: ${(props: IPropsStyle) => (props.isMatched ? "#ffd600" : "#000")};
+  color: ${(props: IBoardsListUIStyle) =>
+    props.isMatched ? "#ffd600" : "#000"};
 `;
 
 export const SearchBox = styled.div`

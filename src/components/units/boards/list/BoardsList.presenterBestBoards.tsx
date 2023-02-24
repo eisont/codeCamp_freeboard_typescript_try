@@ -1,12 +1,12 @@
 // 게시판 목록 presenter
+import { IPropsBestBoards } from "../../../../../path/to/types/components/units/types";
 import { getDateComma } from "../../../../commons/libraries/utils";
 import { LikeIconsvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
 import UserInfoPicure from "../../../commons/Info/userInfoPicture";
-import * as S from "./BoardList.style";
-import { IPropsBestBoards } from "./BoardList.types";
+import * as S from "./BoardsList.styles";
 
-const BoardListBestBoards = (pr: IPropsBestBoards) => {
+const BoardListsBestBoards = (pr: IPropsBestBoards) => {
   const ImageResult = pr.el?.images?.filter((img) => img)[0];
 
   return (
@@ -44,4 +44,4 @@ const BoardListBestBoards = (pr: IPropsBestBoards) => {
   );
 };
 
-export default BoardListBestBoards;
+export default BoardListsBestBoards;

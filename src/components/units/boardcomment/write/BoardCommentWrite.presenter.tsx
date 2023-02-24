@@ -1,8 +1,8 @@
+import { IBoardCommentWriteUI } from "../../../../../path/to/types/components/units/types";
 import { CommentIconsvg } from "../../../../commons/styles/Iconsvg";
-import * as S from "./BoardCommentWrite.style";
-import { IPropPre } from "./BoardCommentWrite.types";
+import * as S from "./BoardCommentWrite.styles";
 
-const BoardCommentWriteUI = (pr: IPropPre) => {
+const BoardCommentWriteUI = (pr: IBoardCommentWriteUI) => {
   return (
     <S.Wrapper>
       {/* 등록하기 일때 보여줘 */}
@@ -13,20 +13,21 @@ const BoardCommentWriteUI = (pr: IPropPre) => {
             width="20"
             height="20"
             fill="#ffd600"
-          />{" "}
+          />
           댓글
         </S.Flexbox>
       )}
       <S.InputWrapper>
         <S.Input
-          placeholder="작성자"
-          // readOnly={!!pr.LoggedInUserData.fetchUserLoggedIn.name}
-          defaultValue={pr.LoggedInUserData?.fetchUserLoggedIn?.name}
+          type="text"
           onChange={pr.onChangeWriter}
+          placeholder="작성자를 입력해주세요."
+          // readOnly={!!pr.LoggedInUserData.fetchUserLoggedIn.name}
+          // defaultValue={pr.LoggedInUserData?.fetchUserLoggedIn?.name}
         />
         <S.Input
           type="password"
-          placeholder="비밀번호"
+          placeholder="비밀번호를 입력해주세요."
           onChange={pr.onChangePassword}
         />
         <S.Star onChange={pr.onChangeStar} />

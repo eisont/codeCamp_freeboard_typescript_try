@@ -4,10 +4,10 @@ import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../../path/to/types/generated/types";
-import BoardCommentListUI from "./BoardCommentList.presenter";
-import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.query";
+import BoardCommentsListUI from "./BoardCommentsList.presenter";
+import { FETCH_BOARD_COMMENTS } from "./BoardCommentsList.queries";
 
-const BoardCommentList = () => {
+const BoardsCommentList = () => {
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
@@ -34,7 +34,7 @@ const BoardCommentList = () => {
     });
   };
 
-  return <BoardCommentListUI data={data} onLoadMore={onLoadMore} />;
+  return <BoardCommentsListUI data={data} onLoadMore={onLoadMore} />;
 };
 
-export default BoardCommentList;
+export default BoardsCommentList;

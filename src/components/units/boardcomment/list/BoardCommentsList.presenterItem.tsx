@@ -8,17 +8,17 @@ import BoardCommentWrite from "../write/BoardCommentWrite.container";
 import {
   DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
-} from "./BoardCommentList.query";
-import * as S from "./BoardCommentList.style";
+} from "./BoardCommentsList.queries";
+import * as S from "./BoardCommentsList.styles";
 import { getDateComma } from "../../../../commons/libraries/utils";
 import {
   Closesvg,
   Pencilsvg,
   Profilesvg,
 } from "../../../../commons/styles/Iconsvg";
-import { IPropsPreItem } from "./BoardCommentList.types";
+import { IIBoardCommentsListUIItem } from "../../../../../path/to/types/components/units/types";
 
-const BoardCommentListUIItem = (pr: IPropsPreItem) => {
+const BoardCommentsListUIItem = (pr: IIBoardCommentsListUIItem) => {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -35,7 +35,7 @@ const BoardCommentListUIItem = (pr: IPropsPreItem) => {
       await deleteBoardComment({
         variables: {
           password,
-          boardCommentId: pr.el?._id,
+          boardCommentId: pr.BoardCommentEl?._id,
         },
         refetchQueries: [
           {
@@ -72,13 +72,15 @@ const BoardCommentListUIItem = (pr: IPropsPreItem) => {
 
             <S.MainWrapper>
               <S.WriterWrapper>
-                <S.Writer>{pr.el?.writer}</S.Writer>
-                <S.Star value={pr.el?.rating} disabled />
+                <S.Writer>{pr.BoardCommentEl?.writer}</S.Writer>
+                <S.Star value={pr.BoardCommentEl?.rating} disabled />
               </S.WriterWrapper>
               <S.Contents>
-                {pr.el?.contents.length === 0 ? "컨텐츠 없음" : pr.el?.contents}
+                {pr.BoardCommentEl?.contents.length === 0
+                  ? "컨텐츠 없음"
+                  : pr.BoardCommentEl?.contents}
               </S.Contents>
-              <S.Date>{getDateComma(pr.el?.createdAt)}</S.Date>
+              <S.Date>{getDateComma(pr.BoardCommentEl?.createdAt)}</S.Date>
             </S.MainWrapper>
 
             <S.OptionWrapper>
@@ -99,11 +101,15 @@ const BoardCommentListUIItem = (pr: IPropsPreItem) => {
       </S.Box>
 
       {isEdit && (
-        <BoardCommentWrite isEdit={true} setIsEdit={setIsEdit} el={pr.el} />
+        <BoardCommentWrite
+          isEdit={true}
+          setIsEdit={setIsEdit}
+          BoardCommentEl={pr.BoardCommentEl}
+        />
       )}
       <S.Hr />
     </S.Wrapper>
   );
 };
 
-export default BoardCommentListUIItem;
+export default BoardCommentsListUIItem;

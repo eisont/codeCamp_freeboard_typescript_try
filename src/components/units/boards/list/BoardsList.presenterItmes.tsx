@@ -1,11 +1,11 @@
 // 게시판 목록 presenter
 
-import * as S from "./BoardList.style";
+import * as S from "./BoardsList.styles";
 import { getDateComma } from "../../../../commons/libraries/utils";
-import { IPropsPreItem } from "./BoardList.types";
 import { v4 as uuidv4 } from "uuid";
+import { IPropsPreItem } from "../../../../../path/to/types/components/units/types";
 
-const BoardListItem = (pr: IPropsPreItem) => {
+const BoardsListItem = (pr: IPropsPreItem) => {
   return (
     <S.Grid>
       <S.Text>{pr.index + 1}</S.Text>
@@ -25,4 +25,4 @@ const BoardListItem = (pr: IPropsPreItem) => {
   );
 };
 
-export default BoardListItem;
+export default BoardsListItem;

@@ -3,19 +3,19 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-import BoardListUI from "./BoardList.presenter";
+import BoardsListUI from "./BoardsList.presenter";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
   FETCH_BOARDS_OF_THE_BEST,
-} from "./BoardList.query";
+} from "./BoardsList.queries";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../../path/to/types/generated/types";
 
-const BoardList = () => {
+const BoardsList = () => {
   const router = useRouter();
 
   const [keyword, setKeyword] = useState(``);
@@ -54,7 +54,7 @@ const BoardList = () => {
   };
 
   return (
-    <BoardListUI
+    <BoardsListUI
       keyword={keyword}
       setKeyword={setKeyword}
       startDate={startDate}
@@ -72,4 +72,4 @@ const BoardList = () => {
   );
 };
 
-export default BoardList;
+export default BoardsList;

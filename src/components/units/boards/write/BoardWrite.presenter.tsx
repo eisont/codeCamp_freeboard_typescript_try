@@ -1,11 +1,11 @@
-import * as S from "./BoardWrite.style";
+import * as S from "./BoardWrite.styles";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import { v4 as uuidv4 } from "uuid";
-import Uploads01 from "../../../commons/uploads/01/Upload01.container";
-import { IPropsPre } from "./BoardWrite.types";
+import { IBoardWriteUI } from "../../../../../path/to/types/components/units/types";
+import Uploads01 from "../../../commons/uploads/01/upload01.container";
 
-const BoardWriteUI = (pr: IPropsPre) => {
+const BoardWriteUI = (pr: IBoardWriteUI) => {
   return (
     <S.Wrapper onSubmit={pr.handleSubmit(pr.onClickSubmit)}>
       <S.Title>{pr.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>

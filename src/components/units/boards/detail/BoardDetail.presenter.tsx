@@ -5,13 +5,13 @@ import {
   LikeIconsvg,
   LinkIconsvg,
 } from "../../../../commons/styles/Iconsvg";
-import * as S from "./BoardDetail.style";
+import * as S from "./BoardDetail.styles";
 import { getDateComma } from "../../../../commons/libraries/utils";
-import { IPropsPre } from "./BoardDetail.types";
 import BoardDetailCarousel from "../../../commons/carousel/boardDetail";
+import { IBoardDetailUI } from "../../../../../path/to/types/components/units/types";
 import UserInfoPicure from "../../../commons/Info/userInfoPicture";
 
-const BoardDetailUI = (pr: IPropsPre) => {
+const BoardDetailUI = (pr: IBoardDetailUI) => {
   return (
     <S.Wrapper>
       <S.Contents>
