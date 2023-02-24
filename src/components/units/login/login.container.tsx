@@ -3,11 +3,15 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import LoginUI from "./login.presenter";
 import * as yup from "yup";
-import { LOGIN_USER } from "./login.query";
+import { LOGIN_USER } from "./login.queries";
 import { useMutation } from "@apollo/client";
 import { AccessTokenState } from "../../../commons/store";
 import { useRecoilState } from "recoil";
-import { IData } from "./login.types";
+import {
+  IMutation,
+  IMutationLoginUserArgs,
+} from "../../../../path/to/types/generated/types";
+import { ILoginData } from "../../../../path/to/types/components/units/types";
 
 const schema = yup.object({
   email: yup.string().required("이메일은 필수 입력사항입니다."),
@@ -16,7 +20,10 @@ const schema = yup.object({
 
 const Login = () => {
   const router = useRouter();
-  const [loginUser] = useMutation(LOGIN_USER);
+  const [loginUser] = useMutation<
+    Pick<IMutation, "loginUser">,
+    IMutationLoginUserArgs
+  >(LOGIN_USER);
   const [, setAccessToken] = useRecoilState(AccessTokenState);
 
   const { register, handleSubmit, formState } = useForm({
@@ -31,15 +38,15 @@ const Login = () => {
     router.push(`./signup`);
   };
 
-  const onClickLogin = async (data: IData) => {
+  const onClickLogin = async (data: ILoginData) => {
     try {
       const result = await loginUser({
         variables: {
-          email: data?.email,
-          password: data?.password,
+          email: String(data?.email),
+          password: String(data?.password),
         },
       });
-      const accessToken = result.data.loginUser.accessToken;
+      const accessToken = String(result?.data?.loginUser.accessToken);
       setAccessToken(accessToken);
       router.push("./boards");
     } catch (error: any) {

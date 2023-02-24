@@ -1,11 +1,11 @@
 // login Presenter
 
+import { ILoginUI } from "../../../../path/to/types/components/units/types";
 import { BackArrow, CheckIconsvg } from "../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../commons/styles/Imgsvg";
-import * as S from "./login.style";
-import { IPropsPre } from "./login.types";
+import * as S from "./login.styles";
 
-const LoginUI = (pr: IPropsPre) => {
+const LoginUI = (pr: ILoginUI) => {
   return (
     <S.Wrapper>
       <S.BackBt onClick={pr.onClickHome}>
@@ -27,7 +27,9 @@ const LoginUI = (pr: IPropsPre) => {
                 {...pr.register("email")}
                 placeholder="아이디를 입력하세요."
               />
-              <S.Errors>{pr.formState?.errors?.email?.message}</S.Errors>
+              <S.Errors>
+                {String(pr.formState?.errors?.email?.message)}
+              </S.Errors>
             </S.InputBox>
             <S.InputBox>
               <S.Input
@@ -35,7 +37,9 @@ const LoginUI = (pr: IPropsPre) => {
                 {...pr.register("password")}
                 placeholder="비밀번호를 입력하세요."
               />
-              <S.Errors>{pr.formState?.errors?.password?.message}</S.Errors>
+              <S.Errors>
+                {String(pr.formState?.errors?.password?.message)}
+              </S.Errors>
             </S.InputBox>
             <S.LoginStay>
               <CheckIconsvg
