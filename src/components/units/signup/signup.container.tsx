@@ -5,10 +5,14 @@ import { useRecoilState } from "recoil";
 import { RecoilModal } from "../../../commons/store";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CREATE_USER } from "./signup.query";
+import { CREATE_USER } from "./signup.queries";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { IData } from "./signup.types";
+import {
+  IMutation,
+  IMutationCreateUserArgs,
+} from "../../../../path/to/types/generated/types";
+import { ISignupData } from "../../../../path/to/types/components/units/types";
 
 const schema = yup.object({
   email: yup.string().required("이메일은 필수 입력사항입니다."),
@@ -21,22 +25,26 @@ const Signup = () => {
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
   const [, setModal] = useRecoilState(RecoilModal);
-  const [createUser] = useMutation(CREATE_USER);
+
+  const [createUser] = useMutation<
+    Pick<IMutation, "createUser">,
+    IMutationCreateUserArgs
+  >(CREATE_USER);
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onClickCreateUser = async (data: IData) => {
+  const onClickCreateUser = async (data: ISignupData) => {
     try {
       if (data?.password === data?.passwordCh) {
         await createUser({
           variables: {
             createUserInput: {
-              email: data?.email,
-              password: data?.password,
-              name: data?.name,
+              email: String(data?.email),
+              password: String(data?.password),
+              name: String(data?.name),
             },
           },
         });

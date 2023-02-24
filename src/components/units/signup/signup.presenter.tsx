@@ -1,11 +1,11 @@
 // Signup Presenter
 
+import { ISignupUI } from "../../../../path/to/types/components/units/types";
 import { Closesvg } from "../../../commons/styles/Iconsvg";
 import LoginModal from "../../commons/layout/loginmodal";
-import * as S from "./signup.style";
-import { IPropsPre } from "./signup.types";
+import * as S from "./signup.styles";
 
-const SignupUI = (pr: IPropsPre) => {
+const SignupUI = (pr: ISignupUI) => {
   return (
     <S.Wrapper>
       <LoginModal Title="회원가입을 축하합니다!" />
@@ -23,7 +23,9 @@ const SignupUI = (pr: IPropsPre) => {
                 placeholder="이메일을 입력하세요."
                 {...pr.register("email")}
               />
-              <S.Errors>{pr.formState?.errors?.email?.message}</S.Errors>
+              <S.Errors>
+                {String(pr.formState?.errors?.email?.message)}
+              </S.Errors>
             </S.InputBox>
             <S.InputTitle>이름</S.InputTitle>
             <S.InputBox>
@@ -32,7 +34,7 @@ const SignupUI = (pr: IPropsPre) => {
                 placeholder="이름을 입력하세요."
                 {...pr.register("name")}
               />
-              <S.Errors>{pr.formState?.errors?.name?.message}</S.Errors>
+              <S.Errors>{String(pr.formState?.errors?.name?.message)}</S.Errors>
             </S.InputBox>
             <S.InputTitle>비밀번호</S.InputTitle>
             <S.InputBox>
@@ -41,7 +43,9 @@ const SignupUI = (pr: IPropsPre) => {
                 placeholder="비밀번호를 입력하세요."
                 {...pr.register("password")}
               />
-              <S.Errors>{pr.formState?.errors?.password?.message}</S.Errors>
+              <S.Errors>
+                {String(pr.formState?.errors?.password?.message)}
+              </S.Errors>
             </S.InputBox>
             <S.InputTitle>비밀번호 확인</S.InputTitle>
             <S.InputBox>
@@ -50,13 +54,13 @@ const SignupUI = (pr: IPropsPre) => {
                 placeholder="비밀번호를 입력하세요."
                 {...pr.register("passwordCh")}
               />
-              <S.Errors>{pr.formState?.errors?.password?.message}</S.Errors>
+              <S.Errors>
+                {String(pr.formState?.errors?.password?.message)}
+              </S.Errors>
             </S.InputBox>
           </S.Section>
 
-          <S.Button type="submit" isSignUp={pr.isSignUp}>
-            회원가입하기
-          </S.Button>
+          <S.Button type="submit">회원가입하기</S.Button>
         </form>
       </S.Contents>
     </S.Wrapper>
