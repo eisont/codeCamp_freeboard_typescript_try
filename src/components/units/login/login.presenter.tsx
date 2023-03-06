@@ -28,7 +28,8 @@ const LoginUI = (pr: ILoginUI) => {
                 placeholder="아이디를 입력하세요."
               />
               <S.Errors>
-                {String(pr.formState?.errors?.email?.message)}
+                {pr.formState?.errors?.email?.message &&
+                  `${String(pr.formState?.errors?.email?.message)}`}
               </S.Errors>
             </S.InputBox>
             <S.InputBox>
@@ -38,7 +39,8 @@ const LoginUI = (pr: ILoginUI) => {
                 placeholder="비밀번호를 입력하세요."
               />
               <S.Errors>
-                {String(pr.formState?.errors?.password?.message)}
+                {pr.formState?.errors?.password?.message &&
+                  `${String(pr.formState?.errors?.password?.message)}`}
               </S.Errors>
             </S.InputBox>
             <S.LoginStay>
