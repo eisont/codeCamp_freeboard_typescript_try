@@ -12,8 +12,8 @@ import {
   LinkIconsvg,
 } from "../../../../commons/styles/Iconsvg";
 import MarketDetailCarousel from "../../../commons/carousel/marketDetail";
-import SellerInfo from "../../../commons/Info/sellerInfo";
 import { IMarketDetailUI } from "../../../../../path/to/types/components/units/types";
+import SellerInfo from "../../../commons/info/sellerInfo";
 
 const MarketDetailUI = (pr: IMarketDetailUI) => {
   return (

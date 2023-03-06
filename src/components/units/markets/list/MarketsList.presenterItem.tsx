@@ -9,25 +9,24 @@ import UserInfoPicure from "../../../commons/Info/userInfoPicture";
 import { IMarketListUIItem } from "../../../../../path/to/types/components/units/types";
 
 const MarketsListUIItem = (pr: IMarketListUIItem) => {
-  const ImageResult = pr.el?.images?.filter((el) => el)[0];
-  const ImageFilter = ImageResult?.includes(`http`);
+  const ImageResult = pr.el?.images?.filter((img) => img)[0];
+  const ImageFilter =
+    ImageResult?.includes(`http`) ||
+    ImageResult?.includes("data:image") ||
+    ImageResult?.split(".")[0] === "https://storage"
+      ? ImageResult
+      : ImageResult && `https://storage.googleapis.com/${ImageResult}`;
 
   return (
     <S.Row onClick={pr.onClickMoveToMarketDetail(pr.el?._id)}>
       <S.FlexOutBox>
         <S.FlexBox>
-          {!ImageResult ? (
+          {ImageResult ? (
+            <S.Image src={ImageFilter} />
+          ) : (
             <S.BestNoImgBox>
               <CodeCampLogosvg width="130" fill="#000" />
             </S.BestNoImgBox>
-          ) : (
-            <S.Image
-              src={
-                ImageFilter
-                  ? ImageResult
-                  : `https://storage.googleapis.com/${ImageResult}`
-              }
-            />
           )}
 
           <S.ColumnBox>
