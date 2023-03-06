@@ -347,11 +347,12 @@ export interface ISignupData {
 }
 
 export interface ISignupUI {
+  modal: boolean;
   errEmail: string;
   errPassword: string;
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   formState: FormState<FieldValues>;
   onClickCreateUser: (data: ISignupData) => Promise<void>;
-  onClickLogin: () => void;
+  onClickBack: () => void;
 }
