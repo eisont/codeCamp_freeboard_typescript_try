@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import {
   AccessTokenState,
-  RecoilModal,
+  RecoilLoginModal,
   restoreAccessTokenLoadable,
 } from "../../../commons/store";
 
@@ -11,7 +11,7 @@ const withAuth = (Component) => (props) => {
   const [accessToken] = useRecoilState(AccessTokenState);
   const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
-  const [, setModalClose] = useRecoilState(RecoilModal);
+  const [, setModalClose] = useRecoilState(RecoilLoginModal);
 
   useEffect(() => {
     if (!accessToken) {

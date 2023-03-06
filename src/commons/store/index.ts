@@ -15,8 +15,12 @@ export const userInfoState = atom({
   },
 });
 
-export const RecoilModal = atom({
-  key: "LoginModal",
+export const RecoilLoginModal = atom({
+  key: "RecoilLoginModal",
+  default: false,
+});
+export const RecoilSignModal = atom({
+  key: "RecoilSignModal",
   default: false,
 });
 

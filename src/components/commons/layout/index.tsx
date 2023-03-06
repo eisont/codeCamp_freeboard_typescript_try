@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { ILayout } from "../../../../path/to/types/components/commons/types";
-import { RecoilModal } from "../../../commons/store";
+import { RecoilLoginModal } from "../../../commons/store";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header/header.container";
-import LoginModal from "./loginmodal";
+import CustomModal from "./customModal";
 import LayoutNavigation from "./navigation";
 
 const Wrapper = styled.div`
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const Layout = (props: ILayout) => {
   const router = useRouter();
 
-  const [modalClose] = useRecoilState(RecoilModal);
+  const [modal] = useRecoilState(RecoilLoginModal);
 
   const MainPage = ["/"];
   const isMainPage = MainPage.includes(router.asPath);
@@ -37,7 +37,7 @@ const Layout = (props: ILayout) => {
       {!isMainPage && !isLoginPage && !isSignupPage && <LayoutNavigation />}
       {(isBoardListPage || isMarketsListPage) && <LayoutBanner />}
 
-      {modalClose && <LoginModal Title="로그인이 필요합니다." />}
+      {modal && <CustomModal Title="로그인이 필요합니다." />}
 
       <div>{props.children}</div>
       {!isMainPage && !isLoginPage && !isSignupPage && <LayoutFooter />}

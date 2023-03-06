@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { ILoginModal } from "../../../../../path/to/types/components/commons/types";
-import { RecoilModal } from "../../../../commons/store";
+import { RecoilLoginModal } from "../../../../commons/store";
 import { Closesvg } from "../../../../commons/styles/Iconsvg";
 import { CodeCampLogosvg } from "../../../../commons/styles/Imgsvg";
 
@@ -48,13 +48,13 @@ const Bt = styled.div`
   cursor: pointer;
 `;
 
-const LoginModal = (pr: ILoginModal) => {
+const CustomModal = (pr: ILoginModal) => {
   const router = useRouter();
 
-  const [, setModalClose] = useRecoilState(RecoilModal);
+  const [, setModal] = useRecoilState(RecoilLoginModal);
 
   const onClickClose = () => {
-    setModalClose(false);
+    setModal(false);
     router.push("/login");
   };
 
@@ -71,4 +71,4 @@ const LoginModal = (pr: ILoginModal) => {
   );
 };
 
-export default LoginModal;
+export default CustomModal;
