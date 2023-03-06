@@ -2,14 +2,14 @@
 
 import { ISignupUI } from "../../../../path/to/types/components/units/types";
 import { Closesvg } from "../../../commons/styles/Iconsvg";
-import LoginModal from "../../commons/layout/loginmodal";
+import CustomModal from "../../commons/layout/customModal";
 import * as S from "./signup.styles";
 
 const SignupUI = (pr: ISignupUI) => {
   return (
     <S.Wrapper>
-      <LoginModal Title="회원가입을 축하합니다!" />
-      <S.BackBt onClick={pr.onClickLogin}>
+      {pr.modal && <CustomModal Title="회원가입을 축하합니다!" />}
+      <S.BackBt onClick={pr.onClickBack}>
         <Closesvg width="22" height="22" fill="#fff" />
       </S.BackBt>
       <S.Contents>
@@ -24,7 +24,8 @@ const SignupUI = (pr: ISignupUI) => {
                 {...pr.register("email")}
               />
               <S.Errors>
-                {String(pr.formState?.errors?.email?.message)}
+                {pr.formState?.errors?.email?.message &&
+                  `${String(pr.formState?.errors?.email?.message)}`}
               </S.Errors>
             </S.InputBox>
             <S.InputTitle>이름</S.InputTitle>
@@ -34,7 +35,10 @@ const SignupUI = (pr: ISignupUI) => {
                 placeholder="이름을 입력하세요."
                 {...pr.register("name")}
               />
-              <S.Errors>{String(pr.formState?.errors?.name?.message)}</S.Errors>
+              <S.Errors>
+                {pr.formState?.errors?.name?.message &&
+                  `${String(pr.formState?.errors?.name?.message)}`}
+              </S.Errors>
             </S.InputBox>
             <S.InputTitle>비밀번호</S.InputTitle>
             <S.InputBox>
@@ -44,7 +48,8 @@ const SignupUI = (pr: ISignupUI) => {
                 {...pr.register("password")}
               />
               <S.Errors>
-                {String(pr.formState?.errors?.password?.message)}
+                {pr.formState?.errors?.password?.message &&
+                  `${String(pr.formState?.errors?.password?.message)}`}
               </S.Errors>
             </S.InputBox>
             <S.InputTitle>비밀번호 확인</S.InputTitle>
@@ -55,7 +60,8 @@ const SignupUI = (pr: ISignupUI) => {
                 {...pr.register("passwordCh")}
               />
               <S.Errors>
-                {String(pr.formState?.errors?.password?.message)}
+                {pr.formState?.errors?.password?.message &&
+                  `${String(pr.formState?.errors?.password?.message)}`}
               </S.Errors>
             </S.InputBox>
           </S.Section>

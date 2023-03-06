@@ -2,7 +2,7 @@ import SignupUI from "./signup.presenter";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { RecoilModal } from "../../../commons/store";
+import { RecoilSignModal } from "../../../commons/store";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CREATE_USER } from "./signup.queries";
@@ -24,7 +24,7 @@ const Signup = () => {
   const router = useRouter();
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
-  const [, setModal] = useRecoilState(RecoilModal);
+  const [modal, setModal] = useRecoilState(RecoilSignModal);
 
   const [createUser] = useMutation<
     Pick<IMutation, "createUser">,
@@ -58,19 +58,20 @@ const Signup = () => {
     }
   };
 
-  const onClickLogin = () => {
+  const onClickBack = () => {
     router.push("/login");
   };
 
   return (
     <SignupUI
+      modal={modal}
       errEmail={errEmail}
       errPassword={errPassword}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
       onClickCreateUser={onClickCreateUser}
-      onClickLogin={onClickLogin}
+      onClickBack={onClickBack}
     />
   );
 };
